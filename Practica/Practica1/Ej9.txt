@@ -1,0 +1,10 @@
+a) En GNU|Linux, los archivos se identifican de acuerdo a diferentes conceptos. Pueden identificarse segun el nombre; segun la ruta del archivo; segun la informacion que realmente contienen (mediante el comando file); segun el inodo.
+b) El comando more sirve para visualizar el contenido de un archivo por paginas, las cuales consisten en suficientes lineas del archivo hasta llenar la pantalla (o se puede acotar usando -5, por ejemplo, antes del nombre del archivo para hacer que cada pagina solo muestre 5 lineas del archivo). Se avanza con la tecla ESPACIO y se sale del modo more mediante la q.
+El comando cat, sirve para visualizar en pantalla el contenido de un archivo o de varios archivos; para crear archivos con el redireccionador (>); para agregar sólo texto usando >>; para combinar el contenido de multiplies archivos en uno solo como cuando creas un archivo. Los parámetros son:
+-n: agrega un número a cada línea que muestre del archivo en cuestión.
+-s: quita las líneas en blanco de lo que se muestra de un archivo
+-E: marca la última línea de un archivo con $
+-A: lo que te muestre de un archivo, también va a mostrar los caracteres no imprimibles, los finales de línea y los tab.
+
+c)
+d) El comando file (file NOMBRE_DEL_ARCHIVO) da como salida el tipo de contenido que contiene el archivo.

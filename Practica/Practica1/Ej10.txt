@@ -1,0 +1,90 @@
+a) mkdir: Sus parámetros más importantes son:
+·         -m o –-mode: permite asignar determinados derechos al nuevo directorio. Los derechos se indican a continuación de la opción.
+·         -p o –-parents: permite crear el directorio o los directorios si todavía no existen. Ya que, si resulta que ya existe un directorio con el nombre y ubicación indicado en el comando, el sistema continúa sin mensaje de error.
+·         -v o –verbose: muestra en la línea de comandos lo que mkdir está haciendo en ese momento. En la mayoría de los casos se utiliza junto con la opción -p
+ 
+b) cd, sus parámetros más importantes son:
+-L: sigue la estructura lógica de los directorios, es la configuración predeterminada.
+-P: sigue la estructura física de directorios.
+ 
+c) touch:
+-a: únicamente modifica el tiempo de acceso (atime), es decir, la última vez que se leyó el archivo.
+-c o –no-create: evita que se cree un archivo nuevo.
+-d o –date=STRING: utiliza la marca de tiempo indicada en lugar de la hora del sistema.
+-m: solo modifica el tiempo de modificación (mtime), es decir, la última vez que se modificó el contenido del archivo
+-r o –reference=ARCHIVO: utiliza la marca de tiempo del archivo de referencia que has indicado.
+-t TIMESTAMP: introduce una marca de tiempo de forma manual. La marca de tiempo se debe indicar con el siguiente formato [AA]MMDDhhmm[.ss]
+ 
+d) ls, lista el contenido del directorio actual :
+-A o –almost-all: enumera también los archivos ocultos pero no los directorios ocultos.
+-a o –all: muestra, además de los archivos ocultos, los directorios ocultos.
+-C: muestra los nombres de los archivos seguidos en una misma línea. Es la opción predeterminada.
+-c: ordena la información según su fecha de última modificación, de más a menos reciente.
+-d o –directory: únicamente muestra los nombres de los directorios, pero no su contenido.
+-h o –human readable: muestra el resultado con un tamaño y formato más legible. Se utiliza en combinación con -l.
+-i: muestra el número Inode antes del nombre del archivo.
+-l: muestra la información del archivo en formato largo.
+-m: muestra los nombres en una sola línea, pero separados por coma a diferencia de -C.
+-R o –recursive: muestra la información de forma recursiva, es decir, también tiene en cuenta los subdirectorios.
+
+e) pwd, visualizar la ruta donde estoy situado:
+-L: aunque en el intérprete de comandos se haya fijado la opción “physical”, si hay un enlace simbólico, este no se resuelve
+-P: con esta opción se resuelve un enlace simbólico
+
+f) find, se escribe find <startingdirectory> <options> <search term>, donde el starting directory puede ser un PATH o / (todo el sistema), ~(directorio home) o .(directorio actual):
+-name: filtra por nombre de archivo o directorio, pero distingue mayusculas de minusculas. Luego del parametro, se indica el nombre del archivo o directorio
+-iname: igual que -name pero no distingue entre mayusculas y minusculas
+-type: filtra por tipo de archivo. Se coloca el tipo luego de poner el parametro. Los tipos son: d – directorio o carpeta; f – archivo normal; l – enlace simbólico; c – dispositivos de caracteres; b – dispositivos de bloque.
+-size: filtra por tamaño de archivo. Despues del parametro, se coloca el tamaño como, por ejemplo, 10M que indica exactamente 10 megabytes o +5G que indica mas de 5 gigabytes. Las magnitudes son: c – bytes; k – kilobytes; M – megabytesG – gigabytes; b – trozos de 512 bytes. Tambien busca n los aubdirectorios del directorio indicado.
+-empty: filtra los archivos o directorios vacios.
+-atime: filtra, segun los dias que se indiquen despues del parámetro, desde que el archivo fue leído o escrito (tiempo de acceso).
+-mtime: filtra, segun los dias que se indiquen despues del parámetro, desde que el archivo fue modificado (tiempo de modificacion).
+-ctime – filtra, segun los dias que se indiquen despues del parámetro, desde que en el archivo se actualizaron los metadatos.
+-newer: filtra todos los archivos que se hayan modificados hace menos tiempo que el archivo indicado despues de este parametro.
+-user: filtra todos los archivos que pertenezcan al usuario indicado despues del parametro en cuestion.
+-group: filtra todos los archivos que pertenezcan al grupoindicado despues del parametro en cuestion.
+-perm: filtra todos los archivos o directorios segun si tienen el permiso indicado luego de este parametro.
+
+g) df, informar la cantidad de espacio libre en el disco. Sus parametros son:
+-h: Da la informacion de manera mas entendible. En vez de darla en Kb, la da en GB y demas unidades que a la vista se entienden mas.
+-i: Muestra los inodes que quedan libres.
+-a: muestra todos los ficheros, inclusive los que tienen cero bytes. 
+
+h) who, verifica los usuarios conectados al sistema y más información del sistema. Los parámetros son:
+-H: añade un encabezado a cada columna. (La línea es la terminal)
+-Hu: indica con un número cuántas horas lleva inactivo un usuario. Si pone un . (punto), indica que el usuario ese está activo.
+-m, am i, whoami: muestran en pantalla el usuario que actualmente está utilizando la terminal.
+-b: indica cuando arrancó el sistema.
+-r: te muestra en run-level actual y el anterior.
+-q: indica el número total de usuarios conectados y los nombres en secuencia de ellos.
+
+i) Para hacerlo podria usarse el comando echo, junto al contenido que queremos agregar al archivo y luego utilizamos >> junto al nombre del archivo para que se agregue al final del archivo. Por ejemplo, echo "Hola pa" >> archivo.
+El comando echo en GNU/Linux es utilizado para imprimir texto en la terminal. Es un comando sencillo pero poderoso que permite mostrar cadenas de texto, valores de variables o el resultado de comandos, y se usa frecuentemente en scripts.
+Parámetros más importantes del comando echo:
+-n: No añade un salto de línea al final de la salida (por defecto, echo añade un salto de línea tras el texto impreso).
+-e: Habilita la interpretación de secuencias de escape especiales. Esto permite usar caracteres como el salto de línea (\n), tabulaciones (\t), entre otros. Ejemplo: echo -e "Primera línea\nSegunda línea". Secuencias de escape comunes:
+\n: Nueva línea.
+\t: Tabulación horizontal.
+\\: Barra invertida.
+\a: Alerta sonora (campana).
+\c: No imprime nada más después de esta secuencia.
+
+j) El comando tail en GNU/Linux se utiliza para mostrar las últimas líneas de un archivo o de la salida de un comando (por defecto, tail muestra las ultimas 10 lineas). Es muy útil para monitorear archivos de registro (logs) o ver los últimos datos generados por un proceso en ejecución.
+Parámetros más importantes del comando tail:
+
+-n o --lines: Especifica el número de líneas que se quieren mostrar. Puedes usar un número para ver las últimas líneas o puede usarse un numero junto al signo + para ver desde esa linea (se cuenta desde el inicio del archivo) hasta el final o junto a un signo - para ver desde esa linea (se cuenta desde el final, es decir, al reves) hasta el final del archivo.
+Ejemplos:
+tail -n 20 archivo.txt  # Muestra las últimas 20 líneas
+tail -n +5 archivo.txt  # Muestra desde la línea 5 hasta el final
+
+-f o --follow: Muestra las últimas líneas de un archivo y continúa mostrando nuevas líneas en tiempo real a medida que el archivo crece (por ejemplo, un archivo de log en ejecución).
+
+--retry: Intenta seguir mostrando las últimas líneas de un archivo aunque el archivo no exista inicialmente o se haya eliminado. Útil si se está monitoreando un archivo que puede ser creado o rotado.
+
+-c o --bytes: Muestra los últimos N bytes de un archivo en lugar de las últimas N líneas.
+Ejemplo: tail -c 50 archivo.txt  # Muestra los últimos 50 bytes del archivo
+
+-q o --quiet/--silent: No muestra los encabezados cuando se está mostrando la salida de múltiples archivos (por defecto, tail muestra el nombre del archivo antes de mostrar sus líneas).
+
+-s o --sleep-interval: Especifica el intervalo de tiempo, en segundos, que tail debe esperar entre cada comprobación cuando se usa con la opción -f para seguir un archivo. Esto es útil para reducir la frecuencia con la que se revisan los cambios en un archivo.
+Ejemplo: tail -f -s 5 archivo.txt  # Verifica cambios cada 5 segundos

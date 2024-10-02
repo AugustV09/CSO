@@ -1,0 +1,143 @@
+1. shutdown
+Funcionalidad: Apaga, reinicia o detiene el sistema de manera controlada.
+Parámetros importantes:
+-h: Apagar el sistema.
+-r: Reiniciar el sistema.
+-P: Apagar y apagar físicamente.
++m: Programar la operacion indicada con el comando shutdown y otro parametro para que se haga en m minutos.
+now: Apagar inmediatamente.
+-c: Cancelar un apagado o reinicio programado.
+Ejemplos:
+shutdown -h now   # Apagar inmediatamente
+shutdown -r +10   # Reiniciar en 10 minutos
+
+2. reboot
+Funcionalidad: Reinicia el sistema.
+Parámetros importantes:
+-f: Forzar el reinicio sin detener todos los procesos de manera segura.
+-p: Apagar en lugar de reiniciar.
+Ejmplos:
+reboot  # Reiniciar el sistema
+reboot -f  # Forzar el reinicio
+
+3. halt
+Funcionalidad: Detiene todos los procesos y apaga el sistema.
+Parámetros importantes:
+-f: Forzar el apagado sin sincronizar ni desmontar los discos.
+-p: Apagar físicamente el sistema.
+Ejemplos:
+halt  # Detener el sistema
+halt -p  # Apagar físicamente
+
+4. locate
+Funcionalidad: Busca archivos en la base de datos preindexada del sistema. Es mas rapido que find pero depende de que la base de datos en cuestion este actualizada.
+Parámetros importantes:
+-i: Búsqueda insensible a mayúsculas/minúsculas.
+-c: Muestra solo el número de coincidencias.
+-r: Búsqueda usando expresiones regulares.
+Ejemplos:
+locate archivo.txt  # Buscar archivo.txt
+locate -i "imagen.jpg"  # Búsqueda insensible a mayúsculas/minúsculas
+
+5. uname
+Funcionalidad: Muestra información sobre el sistema operativo. En realidad muestra el nombre del kernel, es decir, Linux en caso de GNU|Linux.
+Parámetros importantes:
+-a: Muestra toda la información disponible.
+-r: Muestra la versión del kernel.
+-m: Muestra la arquitectura de la máquina.
+Ejemplos:
+uname -a  # Mostrar toda la información del sistema
+uname -r  # Mostrar la versión del kernel
+
+6. dmesg
+Funcionalidad: Muestra mensajes del búfer del kernel, especialmente útil para diagnósticos de hardware.
+Parámetros importantes:
+-T: Muestra las marcas de tiempo en un formato legible.
+-l: Filtrar mensajes por nivel de log.
+-c: Borrar el búfer después de mostrar los mensajes.
+Ejemplos:
+dmesg  # Ver mensajes del kernel
+dmesg -T  # Mostrar mensajes con marcas de tiempo legibles
+
+7. lspci
+Funcionalidad: Muestra información sobre los dispositivos PCI conectados al sistema.
+Parámetros importantes:
+-v: Salida detallada.
+-nn: Muestra IDs numéricos de dispositivos y controladores.
+-k: Muestra los módulos del kernel y controladores en uso.
+Ejemplos:
+lspci  # Listar dispositivos PCI
+lspci -v  # Información detallada
+
+8. at
+Funcionalidad: Programa la ejecución de comandos en un momento específico. (NO PUEDO USARLO EN LA VIRTUAL BOX)
+Parámetros importantes:
+-l: Lista los trabajos programados (equivalente a atq).
+-c: Muestra el contenido del trabajo programado.
+-d o -r: Elimina un trabajo programado.
+Ejemplos:
+echo "comando" | at 15:00  # Ejecutar el comando a las 3 PM
+at -l  # Listar trabajos programados
+
+9. netstat
+Funcionalidad: Muestra estadísticas de red y conexiones activas. (NO PUEDO USARLO EN VIRTUAL BOX)
+Parámetros importantes:
+-t: Muestra conexiones TCP.
+-u: Muestra conexiones UDP.
+-l: Muestra los puertos en escucha.
+-p: Muestra los PID y nombres de los programas asociados a cada conexión.
+Ejemplos:
+netstat -tuln  # Mostrar puertos en escucha TCP/UDP
+netstat -p  # Mostrar programas asociados a conexiones
+
+10. mount
+Funcionalidad: Monta sistemas de archivos en el árbol de directorios. (¿¿Se puede pensar al directorio raiz como un punto de montaje??)
+Parámetros importantes:
+-t: Especifica el tipo de sistema de archivos.
+-o: Opciones de montaje, como ro (solo lectura), rw (lectura/escritura).
+-a: Monta todos los sistemas de archivos listados en /etc/fstab.
+Ejemplo: mount /dev/sda1 /mnt  # Montar partición en /mnt
+
+11. umount
+Funcionalidad: Desmonta sistemas de archivos.
+Parámetros importantes:
+-l: Desmontaje perezoso, espera hasta que el sistema de archivos no esté en uso.
+-f: Forzar desmontaje de sistemas de archivos no accesibles (por ejemplo, en redes).
+Ejemplo: umount /mnt  # Desmontar /mnt
+
+12. head
+Funcionalidad: Muestra las primeras líneas de un archivo.
+Parámetros importantes:
+-n: Especifica el número de líneas a mostrar (por defecto son 10). A diferencia de con tail, solo hay una interaccion "rara" si se coloca un signo menos antes del numero: se mostraran todas las lineas comenzando desde la ultima segun el numero (se cuenta desde la ultima linea, tantas lineas segun el numero, pero tampoco se cuenta la linea que coincide con el numero contado) hasta la primer linea.
+-c: Muestra un número específico de bytes en lugar de líneas.
+Ejemplos: head -n 5 archivo.txt  # Mostrar las primeras 5 líneas
+
+13. losetup
+Funcionalidad: Configura o muestra información sobre dispositivos de bucle (loop devices). (NO PUEDO USARLO EN VIRTUAL BOX)
+Parámetros importantes:
+-a: Muestra todos los dispositivos de bucle configurados.
+-f: Encuentra el siguiente dispositivo de bucle libre.
+-d: Desasigna un dispositivo de bucle.
+Ejemplos: losetup -a  # Mostrar dispositivos de bucle configurados
+
+14. write
+Funcionalidad: Envía mensajes a otro usuario que esté conectado en el sistema.
+Parámetros importantes:
+Se usa directamente con el nombre de usuario al que enviar el mensaje.
+Ejemplo: write usuario  # Comienza a escribirle un mensaje al usuario
+
+15. mkfs
+Funcionalidad: Crea un sistema de archivos en una partición o dispositivo. (¿¿DIFERENCIA CON MOUNT??)
+Parámetros importantes:
+-t: Especifica el tipo de sistema de archivos a crear (por ejemplo, ext4, vfat).
+Ejemplo: mkfs -t ext4 /dev/sda1  # Formatear como ext4
+
+16. fdisk
+Funcionalidad: Herramienta para manipular tablas de particiones.
+Parámetros importantes:
+-l: Muestra las particiones de todos los discos.
+-n: Crea una nueva partición.
+-d: Elimina una partición.
+Ejemplos:
+fdisk -l  # Listar particiones
+fdisk /dev/sda  # Abrir disco para manipulación de particiones
