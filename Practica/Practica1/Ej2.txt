@@ -1,3 +1,5 @@
 2-a) Las distribuciones de GNU/Linux son personalizaciones de dicho sistema operativo, es decir, especifican una determinada version de kernel y de GNU, diferentes herramientas y paquetes. Debian, Red Hat, openSUSE y Arch Linux son algunos ejemplos de diferentes distribuciones de GNU/Linux. Debian la distribucion mas general y extensa en cuanto al soporte de hardware; openSUSE es una distribucion liviana pero que apunta a ser solida y escalable; Arch Linux se enfoca en ser liviana y minimalista, para consumir la menor cantidad de recursos posibles; Red Hat se orientó mas hacia el lado de software propietario, tal de que no es libre ni gratuito.
+
 b) Una distribucion de otra se diferencia en los paquetes de software instalados, el Shell, la interfaz grafica, los soportes de hardware y la version de kernel Linux.
+
 c) Debian es una distribucion de Linux muy popular y estable, que apunta a darle a los usuarios un sistema operativo todo terreno y de gran soporte de manera libre y gratuita. Inicio en 1993 como un proyecto nacido de la popularidad que estaba adquiriendo GNU/Linux, de la mano de Ian Murdock y su esposa.

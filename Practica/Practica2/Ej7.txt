@@ -1,0 +1,5 @@
+a) El concepto de "empaquetar archivos" en GNU/Linux se refiere a la práctica de combinar múltiples archivos y directorios en un solo archivo. Esto facilita la gestión, transferencia y almacenamiento de datos.
+
+b) Luego de comprimir 4 archivos (18+20+12+19 Bytes), el tamaño del archivo empaquetado (10.2 KB) es mucho mayor que la suma de los tamaños de los 4 archivos individuales.
+
+c-d) Es posible comprimir 4 archivos en uno solo (empaquetar) a traves del comando tar. Si se escribe tar -cvf archivo.tar archivo1 archivo2 archivo3 archivo4, es posible crear el archivo comprimido llamado "archivo.tar" para el cual se comprimió los 4 archivos siguientes.

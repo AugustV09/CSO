@@ -1,0 +1,119 @@
+a) Un proceso es un programa en ejecucion, es decir, es el conjunto de codigo fuente con instrucciones, variables, funciones, etc., que esta en ejecucion. El PID es el Process ID (identificacion de proceso), es decir, es un numero unico que identifica un proceso. Asimismo, el PPID es el Parent Process ID (identifiacion del proceso padre) y corresponde al PID del padre del proceso con el que se este tratando. Todos los procesos tienen un numero unico que los identifica o PID, pues permite gestionar y monitorear los procesos de manera eficiente, y conocer su PPID permite realizar entender la jerarquia de los procesos.
+Otros atributos que tienen los procesos (ESTO ESTA EN LA DIAPOSITIVA 8/22 DEL TEMA 2 - PROCESOS 1) son una identificacion del usuario que lo arrancó; una identificaion del grupo que arrancó el proceso, si hay estructura de grupos; en ambientes multiusuario, desde que terminal se ejecutó el proceso y quien lo ejecutó.
+
+b) Comandos utiles para buscar procesos:
+
+ps (Process Status): Muestra información sobre los procesos activos.
+ps: Lista los procesos asociados a la terminal actual.
+	ps aux: Muestra todos los procesos en el sistema, incluyendo los de otros usuarios.
+	ps -ef: Alternativa a aux, con un formato diferente.
+
+top: Proporciona una vista en tiempo real de los procesos del sistema, con información sobre el uso de la CPU y la memoria. Puedes ordenar los procesos según diferentes criterios (CPU, memoria, etc.).
+
+htop: Es una versión mejorada de top, con una interfaz más amigable y funcionalidades adicionales (si no está instalado, puedes hacerlo con tu gestor de paquetes, como sudo apt install htop).
+
+pgrep: Busca procesos basados en el nombre y devuelve sus identificadores de proceso (PID).
+	pgrep nombre_proceso: Encuentra procesos que coincidan con el nombre.
+
+pidof: Devuelve el PID de un proceso por su nombre.
+	pidof nombre_proceso.
+
+systemctl: Utilizado para gestionar los servicios en sistemas con systemd, también puede listar los procesos.
+	systemctl status: Muestra el estado de los servicios, incluyendo los procesos relacionados.
+
+pstree: Muestra los procesos en ejecución en forma de árbol, indicando las relaciones entre procesos padre e hijo.
+
+c) Un proceso que se ejecuta en background (segundo plano) es uno que se ejecuta de manera "oculta" o sin interactuar directamente con el usuario. El proceso continúa ejecutándose, pero el usuario no ve su interfaz ni tiene que interactuar con él en tiempo real. Estos procesos no ocupan el foco de la pantalla, y el usuario puede seguir utilizando otros programas.
+Ejemplos:
+-Servicios del sistema operativo, como procesos que gestionan redes o actualizaciones.
+-Un script de respaldo de datos que se ejecuta periódicamente sin intervención directa.
+-En una terminal de comandos, puedes poner un proceso en background añadiendo un & al final del comando, por ejemplo: ./mi_programa &.
+
+Por otro lado, un proceso que se ejecuta en foreground (primer plano) es uno que interactúa directamente con el usuario, tiene el control del entorno visible y el usuario puede ingresar comandos o interactuar con la aplicación. Cuando un proceso está en primer plano, ocupa el foco de la pantalla y requiere la atención del usuario.
+Ejemplos:
+-Un navegador web que el usuario está utilizando activamente.
+-Un editor de texto que está abierto y recibiendo entradas del teclado.
+-En una terminal, cuando ejecutas un programa sin el & al final, este corre en foreground hasta que termina.
+
+d) Para ejecutar en background desde el principio, es necesario ejecutarlo desde la terminal como ./mi_programa & ()donde & va a hacer que se ejecute en background). Para pasar un proceso de foreground a background, es necesario suspenderlo con Ctrl + Z y luego enviarlo al background con el comando bg. Finalmente, para traer un proceso del background al foreground, es posible utilizar el comando fg o fg %n (donde "n" es el número del proceso y es posible determinarlo utilizando el comando jobs, el cual muestra una lista de los procesos en segundo plano junto a sus numeros de proceso).
+
+e) El “|” (pipe) nos permite comunicar dos procesos por medio de un pipe o tuberia desde la shell. El pipe conecta stdout (salida estandar) del primer comando con la stdin (entrada estandar) del segundo. Un ejemplo es $ ls | more (es comun usar "|" de esta forma con el comando more).
+
+f)Existen redirecciones destructivas (>) y no destructivas (>>). Al utilizar redirecciones mediante > (destructiva) tal que se escriba en la terminal comando > archivo:
+• Si el archivo de destino (en este caso, dicho archivo se llama archivo) no existe, se lo crea
+• Si el archivo existe, se lo trunca y se escribe el nuevo contenido
+Por otro lado, al utilizar redirecciones mediante >> (no destructiva) tal que se escriba en la terminal comando >> archivo:
+• Si el archivo de destino (en este caso, dicho archivo se llama archivo) no existe, se lo crea
+• Si el archivo existe, se agrega la información al final
+
+Un ejemplo de redireccion destructiva son echo "hola" > archivo.txt y de redireccióin no destructiva es echo "hola" >> archivo.txt
+
+g)
+
+h) Hay comandos que se utilizan para procesos:
+
+1. ps (Process Status)
+El comando ps se usa para mostrar información sobre los procesos que están corriendo en el sistema. El comando ps sin parametros solo muestra los procesos asociados a la terminal actual.
+
+Parámetros importantes:
+-e: Muestra todos los procesos del sistema.
+-f: Muestra la lista de procesos en un formato completo.
+-u: Muestra los procesos para un usuario específico.
+
+Ejemplo:
+ps -ef
+Este comando muestra todos los procesos en formato completo, incluyendo el PID (Process ID), el usuario que ejecuta el proceso, la cantidad de CPU y memoria que consume, etc.
+
+2. kill (Matar procesos)
+El comando kill envía señales a un proceso. El comando kill <PID> envia la señal SIGTERM (como si se usara -15).
+
+Parámetros importantes:
+-9: Enviar la señal SIGKILL para forzar la terminación de un proceso.
+-15: Enviar la señal SIGTERM para solicitar la terminación del proceso de manera más suave (por defecto).
+
+Ejemplo:
+kill -9 12345
+Este comando mata el proceso con el ID 12345 de manera inmediata.
+
+3. pstree (Árbol de procesos)
+Este comando muestra los procesos en ejecución en forma de árbol, lo que ayuda a visualizar qué procesos son padres o hijos de otros.
+
+Parámetros importantes:
+-p: Muestra los PID junto con los nombres de los procesos.
+-u: Muestra los usuarios que están ejecutando los procesos.
+
+Ejemplo:
+pstree -p
+Este comando muestra el árbol de procesos con los PID correspondientes.
+
+4. killall (Matar todos los procesos con el mismo nombre)
+El comando killall mata todos los procesos que tienen el mismo nombre. Es necesario utilizar el nombre que compartan diferentes procesos, englobados bajo un mismo ejecutable por ejemplo.
+
+Parámetros importantes:
+-9: Envía la señal SIGKILL para forzar el cierre de todos los procesos con el nombre especificado.
+-v: Muestra detalles de los procesos que se han terminado.
+
+Ejemplo:
+killall -9 firefox
+Este comando fuerza el cierre de todos los procesos del navegador Firefox que estén ejecutándose.
+
+5. top (Monitoreo de procesos)
+El comando top muestra una lista interactiva y dinámica de los procesos que consumen recursos del sistema en tiempo real, incluyendo CPU y memoria.
+
+Parámetros importantes:
+-o: Ordena los procesos según un criterio, como %CPU o MEM.
+-p: Muestra solo el proceso con un PID específico.
+k: Tecla para matar un proceso desde la interfaz de top.
+
+Ejemplo:
+top -o %CPU
+Este comando ejecuta top y ordena los procesos según el uso de CPU.
+
+6. nice (Prioridad de proceso)
+El comando nice se usa para ejecutar un proceso con una prioridad determinada, modificando su "niceness" (qué tan amable es con otros procesos en términos de consumo de recursos).
+
+Parámetros importantes:
+-n: Especifica el nivel de prioridad (el valor va de -20 a 19; los números más bajos tienen mayor prioridad).
+
+Ejemplo:
+nice -n 10 ./mi_programa

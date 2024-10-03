@@ -1,0 +1,38 @@
+a)1 Se empieza a ejecutar el codigo del BIOS
+2 El BIOS ejecuta el POST (comprueba que todos los dispositivos periféricos funcionen correctamente, que los cables estén bien conectados y que el sistema tenga todos los recursos necesarios para su correcto funcionamiento)
+3 El BIOS lee el sector de arranque (MBR)
+4 Se carga el gestor de arranque (MBC)
+5 El bootloader carga el kernel y el initrd ("initrd", initial ram disk, se monta como una especie de filesystem temporal hasta que se pueda desmontar porque ya está listo el verdadero filesystem raíz.)
+6 Se monta el initrd como sistema de archivos raiz y se inicializan componentes esenciales (ej.: scheduler)
+7 El Kernel ejecuta el proceso init y se desmonta el initrd
+8 Se lee el /etc/inittab
+9 Se ejecutan los scripts apuntados por el runlevel 1 (es el RunLevel de monousuario)
+10 El final del runlevel 1 le indica que vaya al runlevel por defecto
+11 Se ejecutan los scripts apuntados por el runlevel por defecto
+12 El sistema esta listo para usarse
+
+b) El proceso INIT es ejecutado por el kernel para cargar todos los subprocesos (INIT es padre de todos los procesos) responsables del correcto funcionamiento del SO, montar todos los filesystems y asegurar que todos los dispositivos estén disponibles.
+
+c) Los RunLevels diferencian los modos de ejecución del sistema operativo cuando se da el proceso de arranque con SystemV. Su función es la de cargar o dar de baja diferentes servicios según el RunLevel determinado.
+
+d) Segun el estandar:
+• 0: halt (parada)
+• 1: single user mode (monousuario)
+• 2: multiuser, without NFS (modo multiusuario sin soperte de
+red)
+• 3: full multiuser mode console (modo multiusuario completo
+por consola)
+• 4: no se utiliza
+• 5: X11 (modo multiusuario completo con login grafico basado
+en X)
+• 6: reboot
+El RunLevel a ejecutar cuando se inicia el sistema operativo es definido en /etc/inittab (junto a la acción initdefault).
+Mayormente todas las distribuciones respetan estos estándares pero hoy día no se usa SystemV.
+
+e)/etc/inittab tiene como finalidad la de definir los RunLevels, es decir, configura el proceso INIT puesto que dicho proceso influye en el proceso de arranque través del contenido de cada RunLevel. El archivo en cuestión almacena información de definición de los diferentes RunLevels. La información se estructura en un Id (de 1 a 4 caracteres); niveles de ejecución, es decir, el/los niveles en los que se ejecutará la acción; la acción a realizar y el proceso exacto a realizar. Por ejemplo, en este archivo, se almacena el RunLevel por defecto.
+
+f) Para hacer un cambio de <X> RunLevel a uno <Y>, es necesario utilizar el comando telinit <Y> (donde <Y> debe ser el numero de RunLevel). Esto equivaldria a usar init <Y>, pero es mas seguro telinit.
+El cambio no es permanente, pues solo permanecerá mientras permanezca la sesion. Esto sucede porque al reiniciar el sistema o volver a iniciarlo despues de un apagado, el RunLevel por defecto ya se encuentra especificado
+
+g) Los scripts RC (Run Command) son los scripts pertenecientes a los RunLevel, por lo que detallan los comandos ejecutados al encender o apagar la máquina. Se almacenan en /etc/init.d.
+Ante cada acción, GNU|LINUX determina qué script debe ser ejecutado en base al RunLevel al que el script este asociado. De hecho, el link del script tiene una S o una K, que permiten definir si el script debe iniciar ("S", start) un servicio cuando se entre al RunLevel que tiene asociado o si debe dar de baja ("K", kill) ese servicio. Asimismo, existe un orden para llamar a los scripts, el cual se encuentra también definido en el link asociado a ese script (se diferencia en RunLevel por carpeta y los script por nombre dentro de cada una), y que establece que los script con numero de ordne mas bajo se ejecutan primero. Esto ultimo se debe a que hay servicios que hay que habilitar antes de iniciar otros.

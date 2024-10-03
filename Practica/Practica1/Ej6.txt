@@ -1,6 +1,9 @@
 6-a) Un sistema de archivos (Filesystem) es forma en la que el sistema operativo estructura el contenido almacenado en un dispositivo de almacenamiento.
+
 b) Entre algunos de los Filesystem soportados por GNU|Linux están ext3, ext4, ReiserFS y XFS.
+
 c) Es posible visualizar particiones de tipo FAT o NTFS desde GNU|Linux.
+
 d) La estructura basica de los FileSystem en GNU|Linux se encuentra definida por el FHS (FileSystem Hieracy Standard). Esta consiste en: 
 /bin: bin es la abreviación de binaries (binarios), o ejecutables, puesto que alli residen la mayoría de los archivos binarios que utiliza el sistema.
 /sbin: se usa para almacenar los archivos binarios o ejecutables mas esenciales del sistema, que usará el administrador del sistema. 

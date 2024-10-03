@@ -1,6 +1,11 @@
 5-a) El intérprete de comandos (Shell CLI) es la interfaz a través de la cual el usuario se comunica con el SO mediante comandos textuales ingresados por el usuario.
+
 b) La función del intérprete de comandos es la de comunicar al usuario con el SO a partir de comandos específicos que interpreta y que el SO ejecuta mediante sus diferentes librerías.
+
 c) Ejemplos de diferentes intérpretes de comandos son sh (Bourne Shell), csh (C-Shell) y bash (Bourne Again Shell), los cuales se diferencian por la sintaxis de sus comandos y la interacción con el usuario. sh es un intérprete que está en todas las versiones de UNIX y qie es lo suficientemente básico para funcionar en todas las plataformas; csh, que debe su nombre al lenguaje C debido que al hacer scripts, estos son similares a los de C; bash es  de los mas avanzados y populares de GNU|Linux, con licencia GNU, puesto que ofrece las mismas capacidades que csh pero agrega un historial de comandos ejecutados, utilización de los cursores (arriba/abajo), auto completado mediante TAB y redireccionamiento.
+
 d) Los comandos propios al Shell se ubican en su mismo archivo binario, el cual suele estar en /bin. Por otro lado, los comandos externos pueden estar también en /bin, pero pueden ubicarse en /usr/bin, /usr/local/bin, /sbin o hasta en otras rutas que se encuentren en PATH.
+
 e) Se considera que el Shell no es parte del kernel de GNU|Linux porque el Shell es solo una interfaz para que el usuario se comunique con el el So, es decir, con el kernel. Si no existiera Shell, lo que consideramos como kernel podría continuar funcionando sin inconvenientes.
+
 f) Es posible definir un intérprete de comandos para cada usuario. Aquella información se define en /etc/passwd y no puede ser modifcada por cualquier usuario, sino por aquel con permisos de superusuario.

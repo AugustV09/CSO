@@ -1,0 +1,162 @@
+5-a) Los permisos sobre archivos en un sistema GNU|Linux se clasifican en 3 tipos: de lectura (“r”, read), de escritura (“w”, write) y de ejecución (“x”, execute). Para determinarlos en los archivos se utilizan números octales, que si el número para un usuario es 4 podrá solo leer; si es 2 podrá solo escribir y si es 1 podrá solo ejecutar (sumas de estos números llevan a combinaciones de permisos entre los nombrados).
+
+b) chmod, chown y chgrp son comandos que tienen que ver con los permisos y los propietarios de un archivo o directorio de GNU|Linux:
+1. chmod (Change Mode)
+
+	•	Funcionalidad: Modifica los permisos de un archivo o directorio.
+	•	Parámetros principales:
+	•	Modos simbólicos: Usando letras para especificar permisos:
+	•	r (lectura), w (escritura), x (ejecución)
+	•	u (usuario propietario), g (grupo), o (otros)
+	•	Ejemplo simbólico:
+	•	chmod u+x archivo: Añade permisos de ejecución para el propietario.
+	•	Modos numéricos: Usando valores octales (0-7):
+	•	4 (lectura), 2 (escritura), 1 (ejecución)
+	•	Opción destacada:
+	•	-R: Aplicar permisos recursivamente a todos los archivos y subdirectorios.
+
+	•	Ejemplo numérico:
+	•	chmod 755 archivo: Asigna permisos rwx al propietario y rx al grupo y otros.
+
+2. chown (Change Owner)
+
+	•	Funcionalidad: Cambia el propietario y/o grupo de un archivo o directorio.
+	•	Sintaxis: chown [opciones] nuevo_propietario[:nuevo_grupo] archivo
+	•	Parámetros principales:
+	•	-R: Aplicar el cambio de propietario recursivamente en directorios y subdirectorios.
+
+	•	Ejemplo básico:
+	•	chown usuario archivo: Cambia el propietario de archivo a usuario.
+	•	Con grupo:
+	•	chown usuario:grupo archivo: Cambia tanto el propietario como el grupo.
+
+3. chgrp (Change Group)
+
+	•	Funcionalidad: Cambia el grupo propietario de un archivo o directorio.
+	•	Sintaxis: chgrp [opciones] nuevo_grupo archivo
+	•	Parámetros principales:
+	•	-R: Aplicar el cambio de grupo recursivamente.
+
+	•	Ejemplo:
+	•	chgrp grupo archivo: Cambia el grupo propietario de archivo a grupo.
+
+c) La notacion octal con chmod es una forma de asignar permisos sobre un archivo. Si el número para un usuario es 4 podrá solo leer; si es 2 podrá solo escribir y si es 1 podrá solo ejecutar. Asimismo, sumas de estos numeros, permiten tener mas de un permiso a la vez.
+
+d) Un usuario puede acceder a un archivo para el cual no tiene permiso si es usuario administrador, es decir, si puede utilizar SUDO. Podría hacer sudo cat archivo y así visualizar archivo aunque no tenga permisos de lectura.
+
+e) La "full path name" se refiere a la ruta completa o absoluta de un archivo y corresponde a la referencia exacta a un archivo (es decir, empieza desde el directorio raiz). El "relative path name", por otro lado, corresponde a la referencia a un archivo pero comenzando desde la posicion actual en el sistema de archivos.
+Un ejemplo de "full path name" se refiere es /home/usuario/a.txt y un ejemplo de "relative path name" se refiere a algo como ./a.txt ("./" se refiere a que el archivo esta dentro del directorio actual).
+
+f) Es posible determinar en que directorio me encuentro actualmente a traves del comando pwd. Es posible ingresar a un directorio personal sin utilizar el path completo, mediante cd ~ (donde cd es el comando que permite ingresar a un directorio y ~ referencia al directorio personal del usuario activo). A partir de esto, es posible utilizar esa idea para acceder a otros directorios. Esto corresponde al uso de rutas relativas como usar cd ~/Documentos o hasta usar cd .. para ir "hacia atras" (.. referencia al directorio padre del directorio actual).
+
+g) Comandos que tienen que ver con FileSystems:
+
+1. cd (Change Directory)
+Funcionalidad: Cambia el directorio de trabajo actual.
+Parámetros:
+..: Mueve al directorio superior.
+/: Mueve a la raíz del sistema de archivos.
+
+Ejemplo:
+cd /home/usuario: Cambia al directorio /home/usuario.
+cd ..: Sube un nivel en el árbol de directorios.
+
+2. umount (Unmount)
+Funcionalidad: Desmonta un sistema de archivos previamente montado.
+Parámetros:
+-l: Desmontaje perezoso (lazy), desmonta cuando ya no esté en uso.
+-f: Forzar desmontaje.
+
+Ejemplo:
+umount /mnt/usb: Desmonta el dispositivo en /mnt/usb.
+
+3. mkdir (Make Directory)
+Funcionalidad: Crea un nuevo directorio.
+Parámetros:
+-p: Crea directorios padres si no existen.
+
+Ejemplo:
+mkdir nueva_carpeta: Crea el directorio nueva_carpeta.
+mkdir -p /home/usuario/proyecto/nueva_carpeta: Crea todo el árbol de directorios si no existe.
+
+4. du (Disk Usage)
+Funcionalidad: Muestra el uso del disco por archivos y directorios.
+Parámetros:
+-h: Muestra el tamaño en formato legible (KB, MB, GB).
+-s: Resumen de uso de espacio de disco.
+
+Ejemplo:
+du -h /home/usuario: Muestra el uso del disco en el directorio /home/usuario en formato legible.
+du -sh /home/usuario: Muestra solo un resumen del uso de disco del directorio.
+
+5. rmdir (Remove Directory)
+Funcionalidad: Elimina directorios vacíos.
+Parámetros: No tiene parámetros importantes.
+
+Ejemplo:
+rmdir carpeta_vacia: Elimina carpeta_vacia si está vacía.
+
+6. df (Disk Free)
+Funcionalidad: Muestra información sobre el uso del espacio en disco.
+Parámetros:
+-h: Muestra el espacio libre en formato legible (KB, MB, GB).
+-T: Muestra el tipo de sistema de archivos.
+
+Ejemplo:
+df -h: Muestra el uso de espacio en disco en un formato legible.
+df -T: Muestra el tipo de sistema de archivos y el uso de disco.
+
+7. mount (Mount)
+Funcionalidad: Monta un sistema de archivos o un dispositivo.
+Parámetros:
+-t: Define el tipo de sistema de archivos (ejemplo: ext4, vfat).
+-o: Opciones de montaje (lectura/escritura, solo lectura).
+
+Ejemplo:
+mount /dev/sdb1 /mnt/usb: Monta el dispositivo /dev/sdb1 en /mnt/usb.
+mount -o ro /dev/sdb1 /mnt/usb: Monta el dispositivo solo en modo de lectura.
+
+8. ln (Link)
+Funcionalidad: Crea enlaces simbólicos o duros.
+Parámetros:
+-s: Crea un enlace simbólico.
+
+Ejemplo:
+ln -s /home/usuario/original.txt /home/usuario/enlace.txt: Crea el enlace simbolico enlace.txt hacia el archivo original.txt.
+
+9. ls (List)
+Funcionalidad: Lista el contenido de un directorio.
+Parámetros:
+-l: Lista en formato detallado (permisos, propietario, tamaño).
+-a: Muestra archivos ocultos.
+-h: Tamaños en formato legible.
+
+Ejemplo:
+ls -l: Muestra la lista detallada del contenido del directorio actual.
+ls -la: Lista todo, incluyendo archivos ocultos en formato detallado.
+
+10. pwd (Print Working Directory)
+Funcionalidad: Muestra el directorio de trabajo actual.
+
+Ejemplo:
+pwd: Muestra el directorio donde estás trabajando actualmente.
+
+11. cp (Copy)
+Funcionalidad: Copia archivos y directorios.
+Parámetros:
+-r: Copia recursivamente directorios.
+-v: Modo detallado, muestra lo que está copiando.
+-p: Preserva atributos (propietario, permisos, fechas).
+
+Ejemplo:
+cp archivo.txt /home/usuario/: Copia archivo.txt al directorio /home/usuario/.
+cp -r /home/usuario/carpeta /home/usuario/backup: Copia el directorio recursivamente.
+
+12. mv (Move)
+Funcionalidad: Mueve o renombra archivos y directorios.
+Parámetros:
+-v: Modo detallado.
+
+Ejemplo:
+mv archivo.txt /home/usuario/: Mueve archivo.txt al directorio /home/usuario/.
+mv archivo_viejo.txt archivo_nuevo.txt: Renombra archivo_viejo.txt a archivo_nuevo.txt.

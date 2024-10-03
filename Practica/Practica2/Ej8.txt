@@ -1,0 +1,31 @@
+1°) ls −l > prueba : crea el archivo prueba con la salida del comando ls -l (con el listado detallado de los archivos y directorios en el directorio actual).
+
+2°) ps > PRUEBA : crea el archivo PRUEBA con la salida de ps (procesos asociados a la terminal actual)
+
+3°) chmod 710 prueba : cambia los permisos del archivo prueba para que el propietario pueda leerlo, escribirlo y ejecutarlo; los usuarios que pertenezcan al grupo del propietario solo puedan ejecutarlo y que los demas usuarios no puedan hacer nada sobre el archivo.
+
+4°) chown root:root PRUEBA : Esta operación no esta permitida porque no puede cambiarse el propietario y el grupo de un archivo al propietario y al grupo ROOT sin consentimiento del ROOT o, por lo menos, sin ser super-usuario.
+
+5°) chmod 777 PRUEBA: Esta operacion cambia los permisos del archivo PRUEBA para que todos usuario pueda leer, escribir y ejecutar el archivo.
+
+6°) chmod 700 /etc/passwd : Esta operacion no esta permitida porque no pueden cambiarse los permisos sobre un archivo del que el usuario no es propietario si no se es usuario ROOT y el archivo passwd es propiedad del usuario ROOT y el usuario en cuestion no tiene ningun privilegio.
+
+7°) passwd root: Esta operacion no esta permitida porque el usuario no es super-usuario y, por ende, no puede cambiar la contraseña de otro usuario y menos del usuario ROOT.
+
+8°) rm PRUEBA : se elimina el archivo PRUEBA.
+
+9°) man /etc/shadow : esta operacion no esta permitida porque el usuario no es super-usuario.
+
+10°) find / −name ∗.conf : buscará todos los archivos en todo el sistema (la busuqeda inicia en el directorio raiz) que tenagn un nombre que finalice con .conf.
+
+11°) usermod root −d /home/newroot −L : esta operacion no esta permitida porque el usuario no es super-usuario y, por ende, no pueda cambiar el directorio home del usuario ROOT y menos puede bloquearle la cuenta (debido al -L)
+
+12°) cd /root : esta operacion no esta permitida porque un usuario normal no puede acceder al directorio home del usuario ROOT.
+
+13°) rm ∗ : esta operacion elimina todos los archivos en el directorio actual si el usuario tiene permisos de escritura sobre ellos o si es propietario de ellos (puede ser propietario y no tener permisos de escritura y, aun así, el archivo se eliminará).
+
+14°) cd /etc : el usuario se desplazará al directorio etc.
+
+15°) cp ∗ /home −R : esta operacion no esta permitida porque el usuario normal (sin ningun tipo de privilegio) no tiene permisos para copiar archivos (es decir, de escritura en este caso) sobre el directorio /home o lo directorios de login de cualquier usuario que no sea el mismo.
+
+16°) shutdown : va a dar error porque al usuario normal no se le reconoce el comando en la terminal (POR LO MENOS ME PASA ESO A MI).

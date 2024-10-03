@@ -1,0 +1,6 @@
+a) Desde la terminal de GNU|Linux suelen poderse utilizar los editores de texto Vi/Vim, Emacs y Nano
+
+b) Los comandos more, less o cat permiten visualizar el contenido de un archivo de diferentes formas (son diferentes entre ellos) pero no permiten manipularlo. Sin embargo, con un editor de texto es posible hacer eso y hasta manipular el contenido o agregar más contenido.
+Sus modos de ejecución son Insert (Ins o i), Visual (v) o Normal (Esc). Según el modo, es posible llevar a cabo diferentes acciones.
+
+c) Los comandos más comunes en vi/vim son w, para escribir cambios; q o q!, para quitar el editor; dd, para cortar; y, para copiar desde el portapapeles; p, para pegar desde el portapapeles; u, para deshacer, y /“frase” para buscar “frase”.

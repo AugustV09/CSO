@@ -1,0 +1,157 @@
+4-a) En un sistema GNU|Linux se utilizan los archivos /etc/passwd, /etc/group y /etc/shadow para guardar la información de los usuarios.
+1. /etc/passwd
+Este archivo contiene la información básica de los usuarios del sistema. Cada línea en el archivo representa un usuario y sigue un formato específico de campos separados por dos puntos:
+
+Formato de una línea típica en /etc/passwd: usuario:x:UID:GID:comentario:/home/directorio:/bin/shell
+
+-usuario: El nombre de usuario del sistema.
+-x: Este campo solía contener la contraseña cifrada, pero ahora contiene una "x" indicando que las contraseñas están almacenadas de forma segura en el archivo /etc/shadow.
+-UID (User ID): Es el identificador numérico único del usuario.
+0 es para el superusuario (root).
+1-999 (o 1000 en algunas distribuciones) son reservados para usuarios del sistema.
+1000 en adelante son para usuarios regulares.
+-GID (Group ID): Identificador numérico del grupo principal al que pertenece el usuario, definido en /etc/group.
+-comentario: Campo opcional que a menudo se usa para almacenar el nombre completo del usuario u otra información descriptiva.
+-/home/directorio: La ruta del directorio personal del usuario.
+-/bin/shell: El shell que el usuario utiliza por defecto (ejemplo: /bin/bash, /bin/sh).
+
+Ejemplo de una línea en /etc/passwd: juan:x:1001:1001:Juan Perez:/home/juan:/bin/bash
+
+2. /etc/group
+Este archivo contiene la información de los grupos en el sistema. Al igual que en /etc/passwd, cada línea en el archivo representa un grupo y está estructurada de forma similar con campos separados por dos puntos:
+
+Formato de una línea típica en /etc/group: nombregrupo:x:GID:lista_usuarios
+
+-nombregrupo: El nombre del grupo.
+-x: Campo heredado que indica que la contraseña del grupo (si tiene) está almacenada en otro archivo (como /etc/gshadow).
+-GID: El identificador numérico del grupo.
+-lista_usuarios: Lista de usuarios adicionales que pertenecen al grupo, separados por comas. Un usuario puede estar en múltiples grupos además de su grupo principal.
+
+Ejemplo de una línea en /etc/group: sudo:x:27:juan,pedro
+En este ejemplo, el grupo sudo tiene el GID 27 y los usuarios juan y pedro son miembros adicionales de este grupo.
+
+3. /etc/shadow
+Este archivo contiene las contraseñas cifradas y otra información relacionada con la seguridad de las cuentas de usuario. Es un archivo accesible solo por el superusuario (root) debido a la naturaleza sensible de la información que almacena.
+
+Formato de una línea típica en /etc/shadow: usuario:contraseña:last_change:min:max:warn:inactive:expire
+
+-usuario: El nombre del usuario.
+-contraseña: Contraseña cifrada del usuario. Si el campo contiene un asterisco (*) o está vacío, la cuenta está bloqueada o no tiene una contraseña asignada.
+-last_change: Fecha de la última modificación de la contraseña (en días desde el 1 de enero de 1970).
+-min: El número mínimo de días que deben transcurrir antes de que el usuario pueda cambiar la contraseña nuevamente.
+-max: El número máximo de días que puede pasar antes de que se obligue al usuario a cambiar la contraseña.
+-warn: Número de días antes de que la contraseña expire en los que se advierte al usuario.
+-inactive: Número de días después de la expiración de la contraseña en los que la cuenta quedará inactiva.
+-expire: Fecha de expiración de la cuenta (en días desde el 1 de enero de 1970).
+
+Ejemplo de una línea en /etc/shadow:
+juan:$6$abcdefghijk$lHk90FpzIyzPz:18900:0:99999:7:::
+En este ejemplo, la contraseña de juan está cifrada, y se almacenan las fechas relacionadas con la expiración de la contraseña y advertencias.
+
+b) UID (user IDentifier) hace referencia a un identificador único para cada usuario, el cual identifica al usuario para para el sistema operativo y permite determinar qué recursos están asociados a un usuario. Por esta razón es que no puede estar repetido, ya que no se pueden confundir los recursos entre usuarios y cada uno debe ser distinguible del otro.
+Por otro lado, el GID (Group IDentifier) es un identificador asociado a un grupo para diferenciarlo de los demás.
+
+c) El usuario ROOT es el administrador del sistema, aquel que puede realizar cualquier tipo de operación sin restricción alguna. Por defecto hay solo un usuario ROOT, pero es posible que haya múltiples de ellos si se los cree manualmente. Su UID corresponde al 0.
+
+e) Comandos:
+1. useradd o adduser
+Funcionalidad: Crea un nuevo usuario en el sistema.
+
+Parámetros importantes:
+
+-d: Especifica el directorio home del usuario.
+-m: Crea el directorio home si no existe.
+-s: Define el shell que utilizará el usuario.
+-G: Añade al usuario a un grupo o grupos específicos.
+-e: Fecha de expiración de la cuenta.
+
+Ejemplo:
+sudo useradd -m -s /bin/bash -G sudo,adm juan
+Crea el usuario "juan", con el shell /bin/bash, crea su directorio home y lo añade a los grupos sudo y adm.
+
+Alternativamente, adduser es un comando más interactivo que useradd, que facilita la creación del usuario haciendo preguntas sobre la configuración.
+
+2. usermod
+Funcionalidad: Modifica una cuenta de usuario existente.
+
+Parámetros importantes:
+
+-L: Bloquea la cuenta (disable).
+-U: Desbloquea la cuenta.
+-G: Cambia los grupos secundarios a los que pertenece el usuario.
+-g: cambia el grupo principal o de login del usuario
+-s: Cambia el shell del usuario.
+-d: Cambia el directorio home.
+
+Ejemplo:
+sudo usermod -G wheel juan
+Modifica el usuario "juan" para que pertenezca al grupo wheel.
+
+3. userdel
+Funcionalidad: Elimina una cuenta de usuario.
+
+Parámetros importantes:
+
+-r: Elimina también el directorio home del usuario y los archivos asociados.
+
+Ejemplo:
+sudo userdel -r juan
+Elimina al usuario "juan" y su directorio home.
+
+4. su
+Funcionalidad: Cambia al usuario raíz u otro usuario, iniciando una nueva sesión bajo su identidad, dependiendo si se indico el usuario o se dejó vacio.
+
+Parámetros importantes:
+
+-: Carga el entorno de usuario por completo (entorno login shell).
+-c: Ejecuta un comando como el nuevo usuario.
+
+Ejemplo:
+su - juan
+Cambia la sesión a la del usuario "juan".
+
+5. groupadd
+Funcionalidad: Crea un nuevo grupo en el sistema.
+
+Parámetros importantes:
+
+-g: Especifica el GID (Group ID) del nuevo grupo.
+
+Ejemplo:
+sudo groupadd administradores
+Crea un grupo llamado "administradores".
+
+6. who
+Funcionalidad: Muestra información sobre los usuarios que están conectados actualmente al sistema.
+
+Parámetros importantes:
+
+-b: Muestra cuándo fue el último arranque del sistema.
+-q: Muestra los nombres de los usuarios conectados y el número total.
+-u: Muestra información detallada sobre los usuarios conectados, incluido el tiempo de inactividad.
+
+Ejemplo:
+who -u
+Muestra los usuarios conectados y su tiempo de inactividad.
+
+7. groupdel
+Funcionalidad: Elimina un grupo del sistema.
+
+Parámetros importantes: No tiene muchos parámetros; simplemente elimina el grupo especificado.
+
+Ejemplo:
+sudo groupdel administradores
+Elimina el grupo "administradores".
+
+8. passwd
+Funcionalidad: Cambia la contraseña de un usuario.
+
+Parámetros importantes:
+
+-e: Fuerza al usuario a cambiar su contraseña la próxima vez que inicie sesión.
+-l: Bloquea la cuenta del usuario.
+-u: Desbloquea la cuenta del usuario.
+
+Ejemplo:
+sudo passwd juan
+Cambia la contraseña del usuario "juan".

@@ -1,0 +1,9 @@
+3-a) Systemd es un proceso de arranque que surgió como alternativa a SysV, el cual se caracteriza principalmente por centralizar la administración de demonios (daemons) y de librerías del sistema y mejorar el paralelismo de booteo.
+
+b) En Systemd, el concepto UNIT hace referencia a las unidades de trabajo del proceso de arranque.
+
+c) El comando systemctl sirve para controlar el proceso de arranque Systemd.
+
+d) El concepto de Target hace referencia a unidades de trabajo (units) que agrupan otras unidades de trabajo y así son el análogo a los RunLevels en SystemV.
+
+e) pstree permite visualizar todos los procesos activos de una manera que se indica el parentesco entre ellos. Así es como el daemon systemd pasa a tener PID 1.
