@@ -1,0 +1,13 @@
+Dentro de un script pueden definirse funciones. la definicion puede hacerse de dos maneras:
+
+1) function nombre { 
+	block 
+}
+
+2) nombre() { 
+	block 
+}
+
+Donde nombre indica el nombre de la función y block indica el bloque de codigo dentro de una funcion. Además el bloque debe ir indentado.
+
+Ademas, el pasaje de parametros se maneja de la misma manera que el pasaje de parametros a un script: se colocan los parametros despues de la invocación a una funcion (a partir de su nombre) y se acceden mediante $1, $2, etc. Cabe aclarar que se pisan parametros nuevos con los parametros viejos que ya estaban.

@@ -1,0 +1,29 @@
+El comando cut en GNU/Linux se utiliza para extraer secciones específicas de cada línea de un archivo o de la entrada estándar. Este comando es muy útil cuando necesitas extraer columnas o campos de un archivo de texto delimitado por algún carácter específico (como una coma, un espacio, o un tabulador).
+
+Sintaxis básica: cut [opciones] [archivo]
+
+Parámetros importantes
+-f (fields o campos): Utilizado cuando estás trabajando con archivos delimitados por un carácter específico (como una coma o tabulador). Te permite seleccionar los campos deseados.
+
+Ejemplo:  cut -f 1,3 archivo.txt
+Aquí se extraen el primer y tercer campo de cada línea en archivo.txt.
+
+-d (delimiter o delimitador): Especifica el delimitador que separa los campos en el archivo. Por defecto, cut usa el tabulador como delimitador, pero puedes usar otros caracteres.
+
+Ejemplo:  cut -d ',' -f 2 archivo.csv
+En este ejemplo, el delimitador es una coma (usualmente en archivos CSV), y se extrae el segundo campo de cada línea.
+
+-c (characters o caracteres): Este parámetro se utiliza para cortar por posición de caracteres en lugar de por campos o delimitadores.
+
+Ejemplo:  cut -c 1-5 archivo.txt
+Extrae los caracteres desde la posición 1 hasta la 5 en cada línea de archivo.txt.
+
+--complement: Este parámetro invierte la selección, es decir, en lugar de mostrar los campos o caracteres seleccionados, mostrará todos los campos o caracteres que no se seleccionaron.
+
+Ejemplo: cut -d ',' -f 2 --complement archivo.csv
+Mostrará todos los campos excepto el segundo.
+
+-b (bytes): Selecciona una porción de bytes en lugar de caracteres o campos. Esto es útil si estás tratando con datos binarios o con archivos en los que el tamaño en bytes es relevante.
+
+Ejemplo:  cut -b 1-4 archivo.txt
+Extrae los primeros 4 bytes de cada línea.

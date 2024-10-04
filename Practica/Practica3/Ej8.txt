@@ -1,0 +1,83 @@
+Estructuras de control:
+
+IF con ELSE (puede no usarse el ELSE):
+
+if [ condition ]
+then
+	block
+else
+	block
+fi
+
+-Aclaracion: si se escribe el then en la misma linea del if y la condicion, debe ponerse justo despues del corchete de cierre un punto y coma para indicar que hasta ahi llega esa linea. La condición se escribe separada de los corchetes.
+
+CASE:
+
+case $variable in
+	"valor 1")
+		block
+	;;
+	"valor 2")
+		block
+	;;
+	*)
+		block
+	;;
+esac
+
+-Aclaracion: valor 1 y valor 2 representan valores que puede tomar la variable llamada variable; el bloque de codigo debe ir indentado al igual que con el IF; debe ponerse dobe punto y coma luego de escribir cada bloque; el asterisco (*) es para indicar el caso por defecto.
+
+SELECT:
+
+select variable in opcion1 opcion2 opcion3
+do
+	# en $variable esta el valor elegido
+	block
+done
+
+-Aclaracion: la variable llamada variable no se coloca con el simbolo $ en la linea del select porque esa linea sirve para indicar el valor que exactamente tendra variable (lo que se seleccione estará exactamente dentro de variable). Es muy util con el CASE.
+Ejemplo de SELECT con CASE:
+
+select action in New Exit
+do
+	case $action in
+		"New")
+			echo "Selected option is NEW"
+		;;
+		"Exit")
+			exit 0
+		;;
+	esac
+done
+
+(DEBERIA ESTAR INDENTADO EL CASE O NO)
+
+FOR al estilo C:
+
+for ((i=0; i < 10; i++))
+do
+	block
+done
+
+FOR con lista de elementos:
+
+for i in value1 value2 value3 valueN;
+do
+	block
+done
+
+WHILE:
+
+while [ condition ] #Mientras se cumpla la condición
+do
+	block
+done
+
+UNTIL:
+
+until [ condition ] #Mientras NO se cumpla la condici´on
+do
+	block
+done
+
+

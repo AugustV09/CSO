@@ -1,0 +1,1 @@
+Dentro de un bucle, BREAK corta la ejecucion del bucle y CONTINUE salta a la siguiente iteración del bucle. En shell scripting ellos reciben como parametro un numero que para el BREAK indica cuando bucles debe cortar desde el mas interno hasta el mas externo y que para el CONTINUE indica cuantas iteraciones debe saltearse del bucle en el que se encuentra.
