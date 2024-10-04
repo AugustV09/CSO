@@ -1,0 +1,1 @@
+Shell scripting es un conjunto de comandos de shell de Unix/Linux que se agrupan en un archivo de texto y se ejecutan como un programa. Esta orientado a automatizar tareas, realizar aplicaciones interactivas y realizar aplicaiones con interfaz grafica. Los scripts no necesitan ser compilados porque son interpretados por el interprete de comandos.

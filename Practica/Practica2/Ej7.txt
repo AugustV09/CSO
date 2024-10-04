@@ -3,3 +3,72 @@ a) El concepto de "empaquetar archivos" en GNU/Linux se refiere a la práctica d
 b) Luego de comprimir 4 archivos (18+20+12+19 Bytes), el tamaño del archivo empaquetado (10.2 KB) es mucho mayor que la suma de los tamaños de los 4 archivos individuales.
 
 c-d) Es posible comprimir 4 archivos en uno solo (empaquetar) a traves del comando tar. Si se escribe tar -cvf archivo.tar archivo1 archivo2 archivo3 archivo4, es posible crear el archivo comprimido llamado "archivo.tar" para el cual se comprimió los 4 archivos siguientes.
+
+e) Comandos: 
+1. tar (Tape Archive)
+Este comando se utiliza para crear archivos comprimidos o descomprimidos que contienen múltiples archivos y directorios. El archivo que genera comúnmente tiene la extensión .tar.
+
+Parámetros importantes:
+-c: Crea un archivo.
+-v: Verboso, muestra detalles de lo que está haciendo.
+-f: Especifica el nombre del archivo.
+-x: Extrae los archivos de un archivo tar.
+-z: Comprime el archivo utilizando gzip.
+-j: Comprime el archivo utilizando bzip2.
+
+Ejemplo:
+Crear un archivo tar comprimido con gzip: tar -cvzf archivo.tar.gz /ruta/al/directorio (esta ultima ruta indica donde estan los archivos a comprimir)
+
+Extraer un archivo tar: tar -xvzf archivo.tar.gz
+
+2. grep (Global Regular Expression Print)
+Busca patrones en un archivo o flujo de texto. Filtra líneas que coincidan con una expresión regular.
+
+Parámetros importantes:
+-i: Ignora mayúsculas/minúsculas.
+-r: Busca de manera recursiva en directorios.
+-n: Muestra el número de línea donde se encuentra la coincidencia.
+-v: Inversa, muestra líneas que no coincidan con el patrón.
+-e: Permite especificar una expresión regular.
+
+Ejemplo:
+Buscar todas las líneas que contengan la palabra "error" en un archivo: grep "error" archivo.log
+
+Buscar recursivamente la palabra "fallo" en un directorio: grep -r "fallo" /ruta/del/directorio
+
+3. gzip (GNU Zip)
+Se utiliza para comprimir archivos. A diferencia de tar, sólo comprime un único archivo y lo reemplaza con la versión comprimida.
+
+Parámetros importantes:
+-d: Descomprimir un archivo.
+-k: Mantiene el archivo original al comprimir.
+-v: Muestra el proceso detalladamente.
+-r: Comprime archivos de manera recursiva en un directorio.
+
+Ejemplo:
+Comprimir un archivo: gzip archivo.txt
+
+Descomprimir un archivo: gzip -d archivo.txt.gz
+
+4. zgrep
+Funciona igual que grep, pero permite buscar dentro de archivos comprimidos con gzip sin necesidad de descomprimirlos.
+
+Parámetros importantes:
+Los mismos que grep (como -i, -r, -n, -v).
+
+Ejemplo:
+Buscar el término "aviso" en un archivo comprimido .gz: zgrep "aviso" archivo.gz
+
+5. wc (Word Count)
+Cuenta líneas, palabras y caracteres en un archivo o en la salida de otro comando.
+
+Parámetros importantes:
+-l: Cuenta las líneas.
+-w: Cuenta las palabras.
+-c: Cuenta los caracteres.
+-m: Cuenta los caracteres (distingue multibyte).
+
+Ejemplo:
+Contar líneas, palabras y caracteres de un archivo: wc archivo.txt
+
+Contar solo las líneas: wc -l archivo.txt

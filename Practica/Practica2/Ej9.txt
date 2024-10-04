@@ -1,0 +1,31 @@
+(a) Terminar el proceso con PID 23 : kill 23
+
+(b) Terminar el proceso llamado init o systemd. ¿Qué resultados obtuvo? : sudo kill 1 (porque init o systemd tiene PID 1 y porque es un proceso que no puede ser eliminado sin privilegios). A pesar de hacer el kill, el sistema operatico sigue corriendo. Aun usando sudo kill -9 1, el sistema sigue funcionando.
+
+(c) Buscar todos los archivos de usuarios en los que su nombre contiene la cadena “.conf” : find /home -name *.conf
+
+(d) Guardar una lista de procesos en ejecución el archivo /home/<su nombre de usuario>/procesos : ps -e > /home/august09/procesos
+
+(e) Cambiar los permisos del archivo /home/<su nombre de usuario>/xxxx a:
+Usuario: Lectura, escritura, ejecución
+Grupo: Lectura, ejecución
+Otros: ejecución
+
+chmod 751 /home/august09/xxxx
+
+(f) Cambiar los permisos del archivo /home/<su nombre de usuario>/yyyy a:
+Usuario: Lectura, escritura.
+Grupo: Lectura, ejecución
+Otros: Ninguno
+
+chmod 650 /home/august09/yyyy
+
+(g) Borrar todos los archivos del directorio /tmp : sudo rm /tmp/*
+
+(h) Cambiar el propietario del archivo /opt/isodata al usuario iso2010 : sudo chown iso2010 /opt/isodata
+
+(i) Guardar en el archivo /home/<su nombre de usuario>/donde el directorio donde
+me encuentro en este momento, en caso de que el archivo exista no se debe eliminar
+su contenido anterior.
+
+pwd >> /home/august09/donde

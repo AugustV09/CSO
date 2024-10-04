@@ -1,0 +1,39 @@
+(a) Ingrese al sistema como usuario “root” : su -
+
+(b) Cree un usuario. Elija como nombre, por convención, la primer letra de su nombre 
+seguida de su apellido. Asígnele una contraseña de acceso.
+
+sudo useradd -m oisabellavalenzi
+sudo passwd oisabellavalenzi 
+
+(c) ¿Qué archivos fueron modificados luego de crear el usuario y qué directorios se crearon? : Luego de crear el usuario se modificaron los archivos /etc/passwd y /etc/shadow y se creo el directorio /home/oisabellavalenzi
+
+(d) Crear un directorio en /tmp llamado cursada2017 : sudo mkdir /tmp/cursada2017
+
+(e) Copiar todos los archivos de /var/log al directorio antes creado. : sudo cp /var/log/* /tmp/cursada2017
+
+(f) Para el directorio antes creado (y los archivos y subdirectorios contenidos en él) cambiar
+el propietario y grupo al usuario creado y grupo users.
+
+sudo chown -R oisabellavalenzi:users /tmp/cursada2017
+
+(g) Agregue permiso total al dueño, de escritura al grupo y escritura y ejecución a todos
+los demás usuarios para todos los archivos dentro de un directorio en forma recursiva.
+
+sudo chmod -R 723 /tmp/cursada2017/*
+
+(h) Acceda a otra terminal virtual para loguearse con el usuario antes creado. : su oisabellavalenzi 
+
+(i) Una vez logueado con el usuario antes creado, averigüe cuál es el nombre de su terminal. : ps (el nombre de la terminal esta indicado en la columna de TTY y en la fila de BASH). Sino tambien sirve TTY, que te da el numero de terminal actual
+
+(j) Verifique la cantidad de procesos activos que hay en el sistema. : ps -e | wc -l , aunque va a contar una linea demas debido al encabezado (sino puede usarse el comando top y fijarse en la linea donde dice Tareas) 
+
+(k) Verifiqué la cantidad de usuarios conectados al sistema. : who | wc -l (o se puede usar who -q y fijarse en la linea donde dice el numero de usuarios)
+
+(l) Vuelva a la terminal del usuario root, y envíele un mensaje al usuario anteriormente
+creado, avisándole que el sistema va a ser apagado.
+
+su
+write oisabellavalenzi (una vez presionado ENTER, debe escribirse el mensaje y luego presionar CTRL + D)
+
+(m) Apague el sistema. : sudo shutdown now

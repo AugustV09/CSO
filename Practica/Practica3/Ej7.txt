@@ -1,0 +1,41 @@
+El comando test es similar a expr en que sirve para realizar operaciones logicas (como decir si un numero es igual a otro o si una cadena es igual a otra) pero se recomienda usarlo cuando si queran expresar condiciones. El comando puede utilizarse para:
+
+Pruebas de Archivos: Verifican la existencia, el tipo y los permisos de los archivos.
+-e FILE: Verifica si un archivo o directorio existe.
+-f FILE: Verifica si el archivo existe y es un archivo regular.
+-d FILE: Verifica si el archivo existe y es un directorio.
+-r FILE: Verifica si el archivo es legible.
+-w FILE: Verifica si el archivo tiene permisos de escritura.
+-x FILE: Verifica si el archivo es ejecutable.
+
+Ejemplo:
+test -e /ruta/del/archivo
+[ -e /ruta/del/archivo ]
+
+Pruebas Numéricas: Compara números.
+n1 -eq n2: Verifica si dos números son iguales.
+n1 -ne n2: Verifica si dos números no son iguales.
+n1 -gt n2: Verifica si el primer número es mayor que el segundo.
+n1 -lt n2: Verifica si el primer número es menor que el segundo.
+n1 -ge n2: Verifica si el primer número es mayor o igual que el segundo.
+n1 -le n2: Verifica si el primer número es menor o igual que el segundo.
+
+Ejemplo:
+test 5 -eq 5 o [ 5 -eq 5 ]
+
+Pruebas de Cadenas: Evalúan cadenas de texto.
+-z STRING: Verifica si la longitud de la cadena es cero (cadena vacía).
+-n STRING: Verifica si la longitud de la cadena no es cero.
+STRING1 = STRING2: Verifica si dos cadenas son iguales.
+STRING1 != STRING2: Verifica si dos cadenas no son iguales.
+Ejemplo:
+test -z "" o [ -z "" ]
+
+Operadores Lógicos: Se pueden combinar varias condiciones usando operadores lógicos.
+! EXPRESIÓN: Niega la expresión.
+EXP1 -a EXP2: Evaluación lógica AND (ambas expresiones deben ser verdaderas). Por otro lado, puede utilizarse && (es circuito corto).
+EXP1 -o EXP2: Evaluación lógica OR (al menos una de las expresiones debe ser verdadera). Por otro lado, puede utilizarse || (es circuito corto).
+
+Ejemplos:
+test ! -e /archivo/inexistente  o  [ ! -e /archivo/inexistente ]
+["hola" = "hola" -a 5 -gt 4]  o  ["hola" = "hola"] && [5 -gt 4]

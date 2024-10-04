@@ -1,0 +1,1 @@
+La funcion del comando exit es la de terminar con la sesion actual de la terminal o la de terminar con un script. Recibe como parametro un numero entre 0 y 255, que indican como termino el script o el utlimo comando. El 0 indica que la operacion fue exitosa y un numero entre 1 y 255 indica que fue error (el error puede ser diferente dependiendo del numero enviado).

@@ -99,7 +99,7 @@ sudo userdel -r juan
 Elimina al usuario "juan" y su directorio home.
 
 4. su
-Funcionalidad: Cambia al usuario raíz u otro usuario, iniciando una nueva sesión bajo su identidad, dependiendo si se indico el usuario o se dejó vacio.
+Funcionalidad: Cambia al usuario raíz u otro usuario, mediante una terminal virtual (se hace esto por defecto), dependiendo si se dejó vacio o se indicó el usuario respectivamente.
 
 Parámetros importantes:
 

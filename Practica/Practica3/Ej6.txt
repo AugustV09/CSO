@@ -1,0 +1,23 @@
+El comando expr se puede utilizar para realizar operacines aritmeticas, comparaciones y concatenaciones. Para asignar a una variable, es necesario utilizarlo como un comando mas tal que $(expr arg1 op arg2). Aun así, el expr se utiliza para operaciones aritmeticas sobre todo.
+
+Aritmeticas:
+Sumar: expr 3 + 2 devuelve 5
+Restar: expr 5 - 3 devuelve 2
+Multiplicar: expr 4 \* 3 (el asterisco debe estar escapado con una barra invertida) devuelve 12
+Dividir: expr 10 / 2 devuelve 5
+Módulo: expr 10 % 3 devuelve 1
+
+Comparación:
+
+Igual: expr 5 = 5 devuelve 1 (verdadero) si son iguales, de lo contrario devuelve 0
+Diferente: expr 5 != 3 devuelve 1
+Mayor que: expr 5 \> 3 devuelve 1
+Menor que: expr 2 \< 4 devuelve 1
+Mayor o igual: expr 5 \>= 5 devuelve 1
+Menor o igual: expr 2 \<= 3 devuelve 1
+Cadenas:
+
+Concatenación: expr "Hello, " : "Hello, ". Ademas, puede usarse expr length string, para saber la longitud del string.
+
+
+Pero tambien existe (( arg1 op arg2)), el cual sirve para hacer operaciones aritmeticas y comparaciones y no es necesario utilizar la barra invertida con la multiplicacion, por ejemplo. Aun así, se utiliza más para operaciones aritmeticas.

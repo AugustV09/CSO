@@ -1,0 +1,5 @@
+El comando echo sirve para exhibir en pantalla la cadena de texto que este a continuacion (si dicha cadena tiene espacios, es necesario escribirla entre comillas). Por otro lado, el comando read sirve para leer desde entrada entandar algo que se almacenará en la variable indicada a continuacion.
+
+a) En un script, los comentarios se indican anteponiendo un # donde iría el comentario.
+
+b) las variables de declaran así: variable=(valor) donde variable es el nombre de la variable; el signo igual debe ir sin espacio entre la variable y el valor; valor puede ser un caracter, string, un numero o un arreglo. Para referenciar a las variables, es necesario utilizar su nombre y anteponer el simbolo $. Ademas, para evitar inconsistencias, puede encerrarse entre llaves ({}) el nombre de la variable y anteponer nuevamente el simbolo $. 
