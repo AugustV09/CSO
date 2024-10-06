@@ -22,7 +22,7 @@ Crear un archivo tar comprimido con gzip: tar -cvzf archivo.tar.gz /ruta/al/dire
 Extraer un archivo tar: tar -xvzf archivo.tar.gz
 
 2. grep (Global Regular Expression Print)
-Busca patrones en un archivo o flujo de texto. Filtra líneas que coincidan con una expresión regular.
+Busca patrones en un archivo o flujo de texto. Lo que retorna es la linea entera que coincide con el patron en caso de haber habido redirección o retorna los archivos donde en su contenido hay coincidencias o retorna los directorios donde hay archivos que en su interior tienen coincidencias.
 
 Parámetros importantes:
 -i: Ignora mayúsculas/minúsculas.
@@ -30,6 +30,7 @@ Parámetros importantes:
 -n: Muestra el número de línea donde se encuentra la coincidencia.
 -v: Inversa, muestra líneas que no coincidan con el patrón.
 -e: Permite especificar una expresión regular.
+-w: Permite especificar que las coincidencias sean exactamente el patrón.
 
 Ejemplo:
 Buscar todas las líneas que contengan la palabra "error" en un archivo: grep "error" archivo.log

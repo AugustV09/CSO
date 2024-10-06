@@ -2,6 +2,7 @@
 # Comentarios acerca de lo que hace el script
 # Siempre comento mis scripts, si no hoy lo hago
 # y mañana ya no me acuerdo de lo que quise hacer
+echo $1
 echo "Introduzca su nombre y apellido:"
 read nombre apellido
 echo "Fecha y hora actual:"

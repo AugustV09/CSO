@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Elige una opcion:"
+
 select estado in Listar DondeEstoy QuienEsta Salir
 do
 	case $estado in
@@ -12,13 +14,11 @@ do
 		"QuienEsta")
 			echo "$(who)"
 		;;
-		"Salir")
-			break
-		;;
 		*)
 			exit 1
 		;;
 	esac
+	break #Este break es necesario porque el select es una estructura que funciona en bucle.
 done
 
 exit 0

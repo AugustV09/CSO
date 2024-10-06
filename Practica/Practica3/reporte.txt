@@ -1,0 +1,3 @@
+Nombre de Usuario                   | Cantidad de archivos con la extension txt
+------------------------------------------------------------------------------
+august09                           | 39

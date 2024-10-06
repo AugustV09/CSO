@@ -1,0 +1,1 @@
+El comando basename <nombre_del_archivo> te da el nombre base del archivo, ignorando los directorios a los que pertenece.
