@@ -1,0 +1,34 @@
+El comando tr en GNU/Linux (que viene de translate o traducir) se utiliza para transformar o eliminar caracteres de la entrada estándar. Es especialmente útil en procesos de filtrado o manipulación de texto. El comando toma una secuencia de caracteres de entrada y la reemplaza por otra secuencia de caracteres, o simplemente elimina caracteres especificados. Se suele usar mucho con | o con redirecciones.
+
+Sintaxis básica: tr [opciones] SET1 [SET2]
+SET1: Es el conjunto de caracteres que deseas buscar en la entrada.
+SET2: Es el conjunto de caracteres por los cuales deseas reemplazar los caracteres encontrados en SET1.
+
+
+Opciones comunes
+-d: Elimina los caracteres especificados en SET1.
+-s: Comprime múltiples ocurrencias consecutivas del mismo carácter especificado en SET1 en una sola.
+-c: Invierte el conjunto de caracteres especificado en SET1, es decir, actúa sobre todos los caracteres que no están en SET1.
+
+Ejemplos de uso:
+
+Convertir minúsculas en mayúsculas:  echo "hola mundo" | tr 'a-z' 'A-Z'
+En este caso, tr convierte las letras minúsculas (a-z) en mayúsculas (A-Z). Además, es posible convertir mayusculas y minusculas en su opesto en simultaneo a partir de tr a-zA-Z A-Za-z
+
+Eliminar caracteres específicos: Si deseas eliminar un conjunto de caracteres en lugar de reemplazarlos, puedes usar la opción -d. Ejemplo:
+
+echo "hola123mundo" | tr -d '0-9'
+Este comando elimina todos los dígitos del 0 al 9 de la cadena.
+
+Comprimir caracteres repetidos: La opción -s (de squeeze) se utiliza para comprimir caracteres repetidos en un solo carácter. Por ejemplo:
+
+echo "hoollaa     muuundo" | tr -s ' '
+Elimina los espacios repetidos, dejando solo uno entre palabras.
+
+Reemplazar espacios por guiones:  echo "hola mundo" | tr ' ' '-'
+Este comando reemplaza los espacios por guiones.
+
+Eliminar saltos de línea: Para eliminar saltos de línea, se puede utilizar:
+
+tr -d '\n' < archivo.txt
+Esto eliminaría los saltos de línea de un archivo.
