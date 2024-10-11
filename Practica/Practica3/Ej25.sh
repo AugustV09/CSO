@@ -24,6 +24,27 @@ impresion() {
 	echo "${arregloDeUsuarios[*]}"
 }
 
+if [ $# -ge 3 ]
+then
+	echo "Se esperaban 2 parametros como maximo." >&2
+	exit 1
+fi
+
+if [ $# -eq 1 ]
+then
+	if [ "$1" != "-l" ] || [ "$1" != "-i" ]
+	then
+		echo "Se esperaba como parametro -l o -i, pero llego $1." >&2
+		exit 2
+	fi
+fi
+
+if [ $# -eq 2 ] && [ "$1" != "-b" ]
+then
+	echo "Se esperaba como parametro -b seguido de un numero, pero llego $1 $2." >&2
+	exit 3
+fi
+
 arregloDeUsuarios=()
 
 usuarios=$(cat /etc/group | grep -w "users" | cut -d: -f4)
@@ -41,19 +62,15 @@ do
 	usuario=$(echo "$usuarios" | cut -d, -f${i})
 done
 
-if [ $# -gt 0 ] && [ $# -lt 3 ]
+if [ $# -gt 0 ]
 then
-	if [ $# -eq 2 ] && [ "$1" = "-b" ] && [ "$2" -ge 0 ] #La de que haya dos parametros esta bien o sobra??
+	if [ "$1" = "-b" ]
 	then
 		retornarElemento $2
 	elif [ "$1" = "-l"  ]
 	then
-		longitud
-	elif [ "$1" = "-i" ]
-	then
-		impresion
+		longitud	
 	else
-		exit 1
+		impresion
 	fi
 fi
-exit 0
