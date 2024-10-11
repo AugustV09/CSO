@@ -1,14 +1,18 @@
 #!/bin/bash
 
 push() {
+	if [$# -ne 1]
+	then
+		echo "Se esperaba 1 parametro." >&2
+		return 1
+	fi
+
 	pila=("$1" ${pila[*]}) #Esta bien pensarlo como una lista o no hace falta??
-	return 0
 }
 
 pop() {
 	unset pila[0]
 	pila=(${pila[*]})
-	return 0
 }
 
 length() {
@@ -18,7 +22,6 @@ length() {
 
 print() {
 	echo "${pila[*]}"
-	return 0
 }
 
 pila=()
@@ -35,4 +38,4 @@ pop
 echo "La longitud de la pila despues es de $(length)"
 print
 
-exit 0
+exit 0 #Es implicito??

@@ -13,10 +13,7 @@ recorrido() {
 		fi
 	done
 	echo "En total hay $totalImpares numeros impares."
-	return 0
 }
 
 numeros=(1 2 5 4 78 44 53 7)
 recorrido
-
-exit 0

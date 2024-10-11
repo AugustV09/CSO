@@ -7,6 +7,7 @@ inicializar() {
 agregar_elem() {
 	if [ $# -ne 1 ]
 	then
+		echo "Se esperaba 1 parametro." >&2
 		return 1
 	fi
 	array+=("$1")
@@ -14,14 +15,20 @@ agregar_elem() {
 
 eliminar_elem() {
 	
-	if [ $# -ne 1 ] && [ ${#array[*]} -le $1 ]
+	if [ $# -ne 1 ]
 	then
-		echo "No se ha podido eliminar el elemento por tratarse de una posicion no valida"
+		echo "Se esperaba 1 parametro" >&2
 		return 1
 	fi
+
+	if [ ${#array[*]} -le $1 ]
+	then
+		echo "No se ha podido eliminar el elemento por tratarse de una posicion no valida" >&2
+		return 2
+	fi
+
 	unset array[${1}]
 	array=(${array[*]}) #Cuando se hace esto, la posicion que quedó vacia no se copia al nuevo array.
-	return 0
 }
 
 longitud() {
@@ -33,16 +40,22 @@ imprimir() {
 }
 
 inicializar_Con_Valores() {
-	if [ $# -eq 2 ] && [ $1 -ge 0 ]
+	if [ $# -ne 2 ]
 	then
-		inicializar
-		for ((i=0; i < ${1}; i++ ))
-		do
-			array+=("$2")	
-		done
-		return 0
+		echo "Se esperaban 2 parametros." >&2
+		return 1
 	fi
 
-	return 1
+	if [ $1 -lt 0 ]
+	then
+		echo "El tamaño para el arreglo no es valido." >&2
+		return 2
+	fi
+
+	inicializar
+	for ((i=0; i < ${1}; i++ ))
+	do
+		array+=("$2")	
+	done
 }
 

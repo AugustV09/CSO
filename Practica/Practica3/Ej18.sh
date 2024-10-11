@@ -1,7 +1,8 @@
 #!/bin/bash
 
-if [ $# -ne 1  ] #Chequeo si se mandó el parametro.
+if [ $# -ne 1 ] #Chequeo si se mandó el parametro.
 then
+	echo "Se esperaba 1 parametro." >&2
 	exit 1
 fi
 
@@ -12,4 +13,4 @@ do
 	conectado=$(who | grep -w "$1" | cut -d " " -f1)
 done
 
-exit 0
+echo "Usuario $conectado logueado en el sistema."

@@ -1,8 +1,10 @@
 #!/bin/bash
 
-if [ ! -d "$HOME/bin" ]
+dir="${HOME}/bin/"
+
+if [ ! -d "$dir" ]
 then
-	mkdir $HOME/bin
+	mkdir "$dir"
 fi
 
 cant_movidos=0
@@ -11,7 +13,7 @@ for programa in ./*
 do
 	if [ -x "$programa" ]
 	then
-		mv "$programa" "${HOME}/bin/"
+		mv "$programa" "$dir"
 		let cant_movidos++
 		nombre=$(basename "$programa")
 		echo "Se ha movido el archivo ejecutable del directorio actual de nombre $nombre"
@@ -19,4 +21,3 @@ do
 done
 
 echo "Se han movido ${cant_movidos} archivos ejecutables"
-exit 0
