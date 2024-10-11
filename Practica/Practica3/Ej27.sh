@@ -2,40 +2,40 @@
 
 inicializar() {
 	array=()
-	return 0
 }
 
 agregar_elem() {
+	if [ $# -ne 1 ]
+	then
+		return 1
+	fi
 	array+=("$1")
-	return 0
 }
 
 eliminar_elem() {
-	if [ ${#array[*]} -gt $1 ]
-	then
-		unset array[${1}]
-		array=${array[*]} #Cuando se hace esto, la posicion que quedó vacia no se copia al nuevo array.
-		return 0
-	fi
 	
-	echo "No se ha podido eliminar el elemento por tratarse de una posicion no valida"
-	return 1
+	if [ $# -ne 1 ] && [ ${#array[*]} -le $1 ]
+	then
+		echo "No se ha podido eliminar el elemento por tratarse de una posicion no valida"
+		return 1
+	fi
+	unset array[${1}]
+	array=(${array[*]}) #Cuando se hace esto, la posicion que quedó vacia no se copia al nuevo array.
+	return 0
 }
 
 longitud() {
-	echo "La longitud del arreglo es ${#array[*]}."
-	return 0
+	echo ${#array[*]}
 }
 
 imprimir() {
 	echo "${array[*]}"
-	return 0
 }
 
 inicializar_Con_Valores() {
-	if [ $1 -ge 0 ]
+	if [ $# -eq 2 ] && [ $1 -ge 0 ]
 	then
-		array=()
+		inicializar
 		for ((i=0; i < ${1}; i++ ))
 		do
 			array+=("$2")	
