@@ -1,42 +1,45 @@
 #!/bin/bash
 
 retornarElemento() {
-	if [ ${#arregloDeUsuarios[*]} -gt $1 ]
+	if [ $# -ne 1 ]
 	then
-		echo "El elemento en la posicion $1 es ${arregloDeUsuarios[${1}]}"	
-		return 0
+		echo "Se esperaba 1 parametro." >&2
+		return 1
+	fi
+	
+	if [ ${#arregloDeUsuarios[*]} -le $1 ]
+	then
+		echo "La posición seleccionada no es valida." >&2	
+		return 2
 	fi
 
-	echo "No existe elemento en la posicion $1"
-	return 1
+	echo "El elemento en la posicion $1 es ${arregloDeUsuarios[${1}]}"
 }
 	
 longitud() {
-	echo "La longitud del arreglo de usuarios es de ${#arregloDeUsuarios[*]}"
-	return 0
+	echo ${#arregloDeUsuarios[*]}
 }
 
 impresion() {
 	echo "${arregloDeUsuarios[*]}"
-	return 0
 }
 
 arregloDeUsuarios=()
 
 usuarios=$(cat /etc/group | grep -w "users" | cut -d: -f4)
 i=1
-n=1
 usuario=$(echo "$usuarios" | cut -d, -f${i})
 
-while [ -n $usuario  ] && [ $n -ne 100  ] #No se que pasa pero se me queda en un bucle infinito
+anterior=""
+#Debo usar la variable anterior porque el comando cut me devuelve siempre el mismo campo cuando no encuentra el separador (sin importar cual campo le indique). Por ende, la variable anterior cumple el rol de no repetir el mismo usuario y de no dejar que suceda un bucle infinito
+
+while [ -n "$usuario" ] && [ "$usuario" != "$anterior" ] #No se que pasa pero se me queda en un bucle infinito
 do
 	arregloDeUsuarios+=("$usuario")
-	i=$(($i + 1))
-	n=$(($n + 1))
+	let i++
+	anterior=$usuario
 	usuario=$(echo "$usuarios" | cut -d, -f${i})
 done
-
-echo "${arregloDeUsuarios[*]}"
 
 if [ $# -gt 0 ] && [ $# -lt 3 ]
 then
@@ -47,6 +50,7 @@ then
 	then
 		longitud
 	elif [ "$1" = "-i" ]
+	then
 		impresion
 	else
 		exit 1
