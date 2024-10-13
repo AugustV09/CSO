@@ -22,11 +22,11 @@ Crear un archivo tar comprimido con gzip: tar -cvzf archivo.tar.gz /ruta/al/dire
 Extraer un archivo tar: tar -xvzf archivo.tar.gz
 
 2. grep (Global Regular Expression Print)
-Busca patrones en un archivo o flujo de texto. Lo que retorna es la linea entera que coincide con el patron en caso de haber habido redirección o retorna los archivos donde en su contenido hay coincidencias o retorna los directorios donde hay archivos que en su interior tienen coincidencias.
+Busca patrones en un archivo o flujo de texto. Lo que retorna es la linea entera que coincide con el patron en caso de indicar un archivo o retorna los archivos donde en su contenido hay coincidencias (ocurre cuando uso -r). Además, utilizar grep "^a" archivo me devuelve todas las lineas de archivo que comienzan con la letra 'a'.
 
 Parámetros importantes:
 -i: Ignora mayúsculas/minúsculas.
--r: Busca de manera recursiva en directorios.
+-r: Busca de manera recursiva en directorios y retorna los archivos donde hay coincidencias en su contenido de acuerdo al patron.
 -n: Muestra el número de línea donde se encuentra la coincidencia.
 -v: Inversa, muestra líneas que no coincidan con el patrón.
 -e: Permite especificar una expresión regular.
@@ -61,7 +61,7 @@ Ejemplo:
 Buscar el término "aviso" en un archivo comprimido .gz: zgrep "aviso" archivo.gz
 
 5. wc (Word Count)
-Cuenta líneas, palabras y caracteres en un archivo o en la salida de otro comando.
+Cuenta líneas, palabras y caracteres en un archivo o en la salida de otro comando. Usando los parametros retornará la cantidad respectiva y espaciado a eso colocará el nombre del archivo (solo cuando se escriba, por ejemplo, wc -l archivo, donde 'archivo' es el nombre del archivo).
 
 Parámetros importantes:
 -l: Cuenta las líneas.

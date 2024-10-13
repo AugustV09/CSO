@@ -20,4 +20,11 @@ Cadenas:
 Concatenación: expr "Hello, " : "Hello, ". Ademas, puede usarse expr length string, para saber la longitud del string.
 
 
-Pero tambien existe (( arg1 op arg2)), el cual sirve para hacer operaciones aritmeticas y comparaciones y no es necesario utilizar la barra invertida con la multiplicacion, por ejemplo. Aun así, se utiliza más para operaciones aritmeticas.
+Pero tambien existe (( arg1 op arg2)), el cual sirve para hacer operaciones aritmeticas y comparaciones y no es necesario utilizar la barra invertida con la multiplicacion, por ejemplo. Aun así, se utiliza más para operaciones aritmeticas. Además, es posible utilizarlo para expresar condicionales mediante operaciones aritmeticas, por ejemplo:
+
+if ((25 % 5))
+then
+	echo "NO SE IMPRIME NADA DEBIDO AL FUNCIONAMIENTO DE (())"
+fi
+
+El tema es que (()) indica falso cuando la operación aritmetica devuelve cero (0) y verdadero cuando devuelve uno (1). Por ende, para que el previo IF realice su cuerpo, es necesario negar la condición mediante !.

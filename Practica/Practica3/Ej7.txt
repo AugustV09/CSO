@@ -1,10 +1,10 @@
-El comando test es similar a expr en que sirve para realizar operaciones logicas (como decir si un numero es igual a otro o si una cadena es igual a otra) pero se recomienda usarlo cuando si queran expresar condiciones. El comando puede utilizarse para:
+El comando test es similar a expr en que sirve para realizar operaciones logicas (como decir si un numero es igual a otro o si una cadena es igual a otra), por que se recomienda usar cuando si queran expresar condiciones. Expresa verdadero cuando su salida es cero (0) y falso cuando es uno (1). El comando puede utilizarse para:
 
 Pruebas de Archivos: Verifican la existencia, el tipo y los permisos de los archivos.
 -e FILE: Verifica si un archivo o directorio existe.
 -f FILE: Verifica si el archivo existe y es un archivo regular.
 -d FILE: Verifica si el archivo existe y es un directorio.
--r FILE: Verifica si el archivo es legible.
+-r FILE: Verifica si el archivo tiene permisos de lectura.
 -w FILE: Verifica si el archivo tiene permisos de escritura.
 -x FILE: Verifica si el archivo es ejecutable.
 
@@ -23,7 +23,7 @@ n1 -le n2: Verifica si el primer número es menor o igual que el segundo.
 Ejemplo:
 test 5 -eq 5 o [ 5 -eq 5 ]
 
-Pruebas de Cadenas: Evalúan cadenas de texto.
+Pruebas de Cadenas: Evalúan cadenas de texto. Colocar una cdena de texto no vacia dentro de corchetes, como por ejemplo [ "hola" ], retornará siempre verdadero.
 -z STRING: Verifica si la longitud de la cadena es cero (cadena vacía).
 -n STRING: Verifica si la longitud de la cadena no es cero.
 STRING1 = STRING2: Verifica si dos cadenas son iguales.
