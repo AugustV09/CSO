@@ -6,6 +6,6 @@ c) La versión actual de GNU|Linux o, por lo menos, la más estable es la 6.4.11
 
 d) Es posible tener mas de un Kernel de GNU|Linux instalado en la misma maquina, a partir de dividir el disco en diferentes particiones y utilizar estas ultimas para instalar los kernel.
 
-e) El kernel se encuentra en /root.
+e) El kernel se encuentra en /boot.
 
 f) El kernel de GNU|Linux es monolitico porque todas sus funcionalidades se compilan juntas y se cargan juntas a memoria. De hecho, es monolitico hibrido puesto que pueden agregarse drivers y nuevas funcionalidades mediante modulos que no pertenezcan a la estructura inicial y, de esta forma, no es necesario recompilar el codigo del kernel.

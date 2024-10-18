@@ -5,6 +5,7 @@ b) Entre algunos de los Filesystem soportados por GNU|Linux están ext3, ext4, R
 c) Es posible visualizar particiones de tipo FAT o NTFS desde GNU|Linux.
 
 d) La estructura basica de los FileSystem en GNU|Linux se encuentra definida por el FHS (FileSystem Hieracy Standard). Esta consiste en: 
+/ : tope de la estructura de directorios.
 /bin: bin es la abreviación de binaries (binarios), o ejecutables, puesto que alli residen la mayoría de los archivos binarios que utiliza el sistema.
 /sbin: se usa para almacenar los archivos binarios o ejecutables mas esenciales del sistema, que usará el administrador del sistema. 
 /dev: se almacenan los controladores de dispositivo (device drivers), que son usados para acceder a los dispositivos del sistema y recursos, como discos duros, memoria, etc.
@@ -15,4 +16,4 @@ d) La estructura basica de los FileSystem en GNU|Linux se encuentra definida por
  /root: Directorio home de root (superusuario). 
 /tmp: Muchos programas tienen la necesidad de generar cierta información temporal y guardarla en un fichero temporal. El lugar habitual para esos ficheros es en /tmp. 
 /usr: Contiene los programas mas útiles e importantes para configurar el sistema. La mayoria de archivos no son esenciales pero si muy utiles.
-/var: contiene directorios que a menudo cambian su tamaño o tienden a crecer de manera excesiva.
+/var: contiene directorios que a menudo cambian su tamaño o tienden a crecer de manera excesiva. /var/log/ tambien es otro directorio importante de /var.
