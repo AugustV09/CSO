@@ -1,0 +1,8 @@
+a) Para el algoritmo Round Robin, un timer fijo corresponde a timer compartido entre diferentes procesos, es decir, que solo se inicializa con una vlor Q cuando llegue a cero. Por otro lado, un timer variable corresponde a un timer que no se comparte entre diferentes procesos, sino que se inicializa en su valor Q cada vez que un proceso es asignado a la CPU.
+
+b) Un claro ejemplo seria que si se tiene un quantum Q=8 y dos procesos:
+Con un timer fijo, si comienza a ejecutarse el proceso 1 y a los 4 instantes de reloj debe hacer E/S, el proceso 2 solo tendra 4 tics de reloj para ejecutarse antes que sea interrumpido.
+Sin embargo, con un timer variable, el proceso 2 tendra 8 instantes de reloj para ejecutarse (el quantum entero) hasta que sea interrumpido.
+
+c) Con un timer fijo, la información del quantum deberia residir en un registro de la CPU y ser inicializa por el kernel cuando llegue a cero, puesto que timer es compartido por todos los procesos.(Esta bien????????????).
+Con un timer variable, la información dle quantim deberia residir en la PCB de cada proceso o tambien podria estar solo como un registro en la CPU. (Esta bien?????????????????)

@@ -1,0 +1,24 @@
+a) FCFS (Fisrt Come First Served): Consiste en que el primer proceso que este disponible para su ejecución es el que será seleccionado para su ejecución.
+
+SJF (Shortest Job First): Es No-Apropiativo y se basa en elegir para que se ejecute al proceso mas corto (debe haber un historial del tiempo en CPU de dicho proceso) entre los diferentes procesos de la Ready Queue.
+
+RR (Round Robin): Es apropiativo y se basa en seleccionar el proceso en la cola segun FIFO (es decir, segun FCFS) pero asignandole un Quantum mediante un reloj que determina cuando debe interrumpirse al proceso en CPU para darle paso a otro proceso. El proceso saliente es colocado al final de la Ready Queue.
+
+Prioridades: Puede ser apropiativo o no. (COMO???????????????????).Se asigna una prioridad a todos los procesos (menor valor, mayor prioridad) y se crea un Ready-Queue para nivel de prioridad. Entonces, se selecciona una proceso para su ejecución de los que tienen mayor prioridad (menor valor). (Esa elección se hace con FIFO????????????).
+
+b) De los algoritmos mencionados, necesitan un parametro, el RR, debido al Quantum; el de prioridades, debido al valor que indique la prioridad; el SJF, debido a que es necesario conocer el tiempo que tarde cada proceso en la CPU. (Prioridades y SJF cuentan como que tienen PARAMETROS???????????????????).
+
+c) (¿¿¿¿¿¿¿¿A QUE SE REFIERE CON MAS ADECUADO SEGUN SISTEMA OPERATIVO??????????????)
+
+A priori, FCFS no beneficia a ningun tipo de proceso.
+
+SJF beneficia a los procesos mas cortos.
+
+RR no beneficia a ningun tipo de proceso.
+
+El algoritmo de planificación por prioridades beneficia a los procesos con mayor prioridad.
+
+d) El algoritmo FCFS tiene como desventaja que comunmente una planificación tan basica no es rentable pero tiene como ventaja que se puede tener claro que los procesos CPU Bound terminan al comenzar su primer rafaga mientras que los I/O Bound no y que no genera inanición.
+El algoritmo SJF implica una clara desventaja para los procesos largos, porque pueden sufrir inanición, pero son muy convenientes para procesos cortos.
+El algoritmo RR tiene como ventaja que evita que un proceso se adueñe de la CPU, pero es una clara desventaja la configuración del reloj (poco quantum implica muchos cambios de contexto y mucho quantum implica posible inanición por parte de otros procesos).
+El algoritmo por prioridades tiene como clara desventaja que procesos de baja prioridad pueden sufrir inanición (esto se puede solucionar si se permite que cambien de prioridad dinamicamente), pero una buena ventaja es el nivel de organización que provee y que favorece la ejecución de procesos de alta prioridad. (Esto ultimo ESTA BIEN???????????????).

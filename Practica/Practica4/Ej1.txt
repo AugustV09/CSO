@@ -1,0 +1,20 @@
+a) Un programa es un codigo fuente almacenado en algun dispotivo de almacenamiento externo, el cual contiene las instrucciones que deben ser ejecutadas en la CPU. SIn embargo, no se encuentra en memoria y es estatico.
+Por otro lado, un proceso es un programa en ejecución, el cual si se encuentra en la memoria y se divide concretamente en un area de datos; en un area de texto o de instrucciones; y en un area de stack, para apilar parametros, direcciones de retorno, etc.
+
+b) El tiempo de retorno (TR) de un job o proceso se refiere al tiempo que transcurre desde que un proceso llega al sistema hasta que completa su ejecución. 
+El tiempo de espera (TE) de un job o proceso se refiere al tiempo que el proceso permanece en el sistema sin ejecutarse (fuera de la CPU). Se puede calcular como TR - Tcpu.
+
+c) El tiempo promedio de retorno (TPR) de un lote de jobs (conjunto de procesos) se refiere al tiempo medio entre los tiempos de retornos de todos los jobs de dicho lote (se suman los tiempos de retorno de todos los procesos del lote y se divide el resultado por la cantidad de procesos del lote).
+El tiempo proemdio de espera (TPE) de un lote de jobs (o procesos) se refiere al tiempo medio entre los tiempos de espera de todos los jobs de dicho lote (se suman los tiempos de espera de todos los procesos del lote y se divide el resultado por la cantidad de procesos del lote).
+
+d) Un Quantum (Q) es una medida que determian cuanto tiempo podra utilizar un proceso la CPU.
+
+e) Un algoritmo de scheduling es apropiativo cuando puede determinar que un proceso en ejecución sea interrumpido y llevado a la cola de listos segun si se cumplió cierta condición que no tiene que ver con que haya termiando su ejecución por si mismo.
+Por otro lado, un algoritmo de scheduling es no apropiativo cuando determina que la ejecución de un proceso en CPU continua hasta que dicha ejecución termina o hasta que se bloquea por algun evento (como una I/O).
+
+f) Schedulers:
+-Long Term Scheduler: admite nuevos procesos en memoria, es decir, establece que su estado sea READY. Asi es como CONTROLA el grado de multiprogramación.
+-Medium Term Scheduler: realiza el swapping entre el disco (area de SWAP) y la memoria cuando sea necesario disminuir el grado de multiprogramación. Es decir, establece el estado en SWAPPEADO o SUSPENDIDO (BLOQUEADO se utiliza más cuando un proceso esta atravesando por un evento por el cual debe esperar).
+-Short Term Scheduler: determina que proceso pasara a ejecutarse, es decir, establece el estado en RUNNING.
+
+g) El dispatcher es un modulo del kernel del sistema operativo que se encarga de hacer el cambio de contexto, el posterior cambio de modo (a modo USUARIO) y el "salto" a la proxima instrucción a ejecutar del proceso entrante (el "salto" se refiere a que el nuevo proceso arranque a ejecutarse).

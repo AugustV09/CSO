@@ -1,0 +1,121 @@
+a) Los comandos consisten en:
+
+top: Muestra en tiempo real los procesos activos en el sistema y su consumo de recursos. Puedes ver el uso de CPU, memoria, y otras estadísticas útiles para monitorear el rendimiento. Es uno de los comandos básicos para observar el estado del sistema.
+
+htop: Similar a top, pero con una interfaz más amigable y opciones de navegación más avanzadas. Permite moverse entre los procesos fácilmente y realizar acciones como matar un proceso directamente desde la interfaz. No siempre viene instalado por defecto, pero es popular por su facilidad de uso.
+
+ps: Muestra información de los procesos en ejecución en el sistema. ps por sí solo muestra los procesos en la terminal actual, pero puedes usar opciones como ps aux para listar todos los procesos del sistema con detalles completos.
+
+pstree: Muestra los procesos en ejecución en forma de árbol. Esto permite ver las relaciones jerárquicas entre procesos, mostrando qué procesos son "padre" y cuáles "hijos" en el sistema.
+
+kill: Envía señales a procesos en ejecución, a partir de su PID. Por defecto, kill envía la señal SIGTERM (15), que le pide al proceso que se cierre de forma segura. Si el proceso no responde, puedes usar kill -9 para enviar la señal SIGKILL, que lo termina de forma inmediata.
+
+pgrep: Permite buscar procesos en ejecución según el nombre o criterios específicos. Devuelve el ID del proceso (PID) que corresponde al nombre especificado. Es útil cuando no conoces el PID exacto y quieres hacer coincidir por nombre.
+Ejemplos:
+	Buscar un proceso por nombre exacto: pgrep firefox
+	Este comando buscará procesos cuyo nombre sea "firefox" y devolverá los PIDs (identificadores de proceso) de todas las instancias de Firefox en ejecución.
+
+	Buscar procesos de un usuario específico: pgrep -u usuario firefox
+	Esto busca procesos con el nombre "firefox" que pertenezcan al usuario especificado. Debes reemplazar usuario por el nombre del usuario que quieras filtrar.
+
+	Buscar procesos que coincidan parcialmente con el nombre: pgrep -f apache
+	La opción -f permite buscar procesos que coincidan con una parte del nombre o con la línea de comando completa. Esto es útil si el nombre del proceso no es exacto o si quieres buscar por 	una cadena específica.
+
+	Contar cuántas instancias de un proceso están en ejecución: pgrep -c python
+	La opción -c cuenta la cantidad de procesos que coinciden con el nombre "python".
+
+	Usar pgrep junto con kill: kill -9 $(pgrep nombre_proceso)
+
+killall: Envía señales a todos los procesos que coinciden con el nombre especificado. A diferencia de kill, que requiere un PID, killall permite matar múltiples instancias de un proceso con un solo comando.
+
+renice: Cambia la prioridad de ejecución de un proceso en el sistema. Esto permite ajustar el nivel de prioridad de un proceso en ejecución para que tenga más o menos acceso a los recursos del sistema.
+Ejemplos:
+	Cambiar la prioridad de un proceso específico por su PID: renice 10 -p 1234
+	Esto cambia la prioridad del proceso con PID 1234 a 10. Puedes reemplazar 1234 con el PID del proceso que quieres ajustar y 10 con el nivel de prioridad deseado.
+
+	Cambiar la prioridad de todos los procesos de un usuario: renice -n 5 -u usuario
+	Aquí, -n 5 define la nueva prioridad 5 para todos los procesos del usuario usuario. Reemplaza usuario con el nombre del usuario cuyos procesos deseas ajustar.
+
+	Disminuir la prioridad de un proceso específico: renice 19 -p 5678
+	Esto establece la prioridad 19 (menos prioridad) para el proceso con PID 5678, reduciendo así su acceso a los recursos del sistema. Es útil si deseas limitar el impacto de un proceso en el 	rendimiento general.
+
+	Aumentar la prioridad de un proceso crítico: sudo renice -10 -p 9876
+	En este caso, el nivel de prioridad se ajusta a -10, dando al proceso con PID 9876 un acceso más alto a los recursos. Es probable que necesites permisos de administrador para aumentar la 	prioridad de un proceso de esta manera (por eso usamos sudo).
+
+	Combinar pgrep y renice para cambiar la prioridad de un proceso por su nombre: renice 5 -p $(pgrep nombre_proceso)
+
+xkill: Una herramienta gráfica que permite cerrar una ventana haciendo clic sobre ella. Cuando ejecutas xkill, el cursor se convierte en una "X" y puedes cerrar cualquier aplicación en la que hagas clic. Es muy útil para cerrar aplicaciones que se han congelado en un entorno de escritorio.
+
+atop: Similar a top y htop, pero más avanzado. Muestra información detallada sobre el rendimiento del sistema y es especialmente útil para monitorear el uso de recursos a lo largo del tiempo, incluyendo disco, red y otros detalles avanzados.
+
+b)i) Debido al funcionamiento del fork(), cada hijo se creara en un nuevo espacio de memoria pero copiando el contenido del espacio de memoria del padre (es decir, el valor actual de C se va transmitiendo a los nuevos hijos). Esto hara que con C=0 haya 2 procesos; con C=1, habrá 4 procesos; con C=2, habra 8 procesos. Entonces, al final, se imprimirán 8 lineas con la palabra "Proceso".
+
+ii) El numero de lineas con la palabra "Proceso" coincide con la cantidad de procesos en ejecución.
+
+c)i) Por consola se mostrarán 8 lineas que digan "Proceso 1", porque luego de cada fork(), cada proceso tendra su variable entera p (cada una sera local a cada proceso) que se incrementara en uno justo antes de imprimirse por proceso.
+
+ii) Todas las lineas serán iguales.
+
+iii) El unico valor de p que aparece es el 1.
+
+d)i) Un pipe es un canal de comunicación que permite a los procesos enviar y recibir datos de forma sincronizada. Es uno de los métodos más sencillos para la comunicación entre procesos (IPC, por sus siglas en inglés). Los datos fluyen en una sola dirección, de un extremo del pipe a otro, lo que hace que sea una comunicación unidireccional. Los pipes son comunes en sistemas basados en Unix/Linux y se usan frecuentemente en combinación con otros mecanismos, como las llamadas al sistema fork, para permitir que los procesos hijo hereden el pipe del proceso padre.
+
+ii)En C, un pipe se crea usando la función pipe(), que pertenece a la biblioteca estándar de POSIX. Su prototipo es el siguiente:
+
+int pipe(int pipefd[2]);
+
+La función pipe() toma como argumento un arreglo de dos enteros, pipefd, donde:
+
+pipefd[0] es el extremo de lectura del pipe.
+pipefd[1] es el extremo de escritura del pipe.
+Al llamar a pipe(), se crea el canal de comunicación y, si la llamada es exitosa, devuelve 0. Si falla, devuelve -1.
+
+iii) El parámetro necesario para crear un pipe es un arreglo de dos elementos enteros, pipefd[2]. Estos elementos representan:
+
+pipefd[0]: el extremo para leer del pipe.
+pipefd[1]: el extremo para escribir en el pipe.
+
+Estos extremos permiten que el proceso lea desde pipefd[0] o escriba en pipefd[1]. Normalmente, el proceso padre y el proceso hijo utilizan estos extremos para comunicarse: un proceso (por ejemplo, el padre) cerrará el extremo de lectura y usará pipefd[1] para escribir datos, mientras que el otro proceso (el hijo) cerrará el extremo de escritura y usará pipefd[0] para leer.
+
+iv) Los pipes permiten comunicación unidireccional entre procesos relacionados (es decir, procesos que tienen una relación de parentesco, como un proceso padre y su proceso hijo). Esto significa que los datos pueden fluir en una sola dirección: de un proceso escritor a un proceso lector.
+Para una comunicación bidireccional (es decir, que los datos fluyan en ambas direcciones entre dos procesos), es necesario crear dos pipes: uno para cada dirección de flujo. Podria hacerse con un unico pipe pero implica tanto control para que no haya errores en la comunicación que es mas fácil crear dos pipes y listo.
+
+e) La información minima que el sistema operativo debe tener de un proceso es:
+
+-Identificador de proceso (PID): Un número único asignado a cada proceso para su identificación.
+
+-Estado del proceso: Indica si el proceso está en ejecución, listo, bloqueado, etc.
+
+-Prioridad: Información sobre la prioridad del proceso, que ayuda al sistema operativo a gestionar el tiempo de CPU.
+
+-Contexto del proceso: Incluye registros de CPU, punteros de pila y otros datos necesarios para reanudar el proceso correctamente cuando se interrumpe.
+
+-Información de gestión de memoria: Punteros a la tabla de páginas o información sobre la memoria asignada al proceso.
+
+-Identificadores de usuario (UID) y grupo (GID): Identifican al propietario del proceso y sus permisos.
+
+-Información sobre la ejecución: Incluye temporizadores (por ejemplo, tiempo de CPU utilizado), contador de instrucciones, etc.
+
+-Punteros a estructuras de datos relacionadas: Como listas de procesos en ejecución, procesos padre/hijo, y otros recursos asociados.
+
+Toda esta información se almacena en la PCB (Process Control Block) de cada proceso.
+
+f) Un proceso es "CPU Bound" cuando esta ligado a la CPU, es decir, la mayor parte de su procesamiento implica el uso de la CPU. Por otro lado, un proceso es "I/O Bound" cuando su procesamiento esta ligado al uso de dispositivos de I/O, es decir, implica mayor uso de dichos dispositivos.
+
+g) Los posibles estados por que puede atravesar un proceso son:
+
+New: Es cuando el proceso es "disparado" por una acción del usuario.
+
+Ready: Es cuando el proceso se encuentra cargado en memoria (puede estar cargado pero suspendido en SWAP).
+
+Running: El proceso se ejecuta en la CPU.
+
+Blocked: El proceso se encuentra esperando a que un evento (como una operacion de I/O bloqueante) termine, con la espera realizandose en memoria RAM. Cuando termina el evento, el proceso vuelve a estado Ready.
+
+Suspend: El proceso se intercambia a memoria SWAP y allí puede estar en estado de Blocked-Suspend si se considera que el proceso bloqueado debe bajarse a SWAP y luego puede pasar a Ready-Suspend hasta que finalmente pase a Ready porque se considere que se debe subir a RAM.
+
+Exit: significa la finalización del proceso.
+
+h) (DIAGRAMA EN LA PAGINA 4 DEL POWER-POINT DE LA EXPLICACIÓN DE LA PRACTICA 4)
+
+i) De la transición de New-Ready se encarga el Long Term Scheduler; de la transición de Ready-Running se encarga el Short Term Scheduler; y de todas las transiciones que impliquen subir o bajar a la SWAP, se encarga el Medium Term Scheduler (como de bloqueado o bloqueado-suspendido).

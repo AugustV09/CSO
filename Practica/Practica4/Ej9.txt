@@ -1,0 +1,6 @@
+a) La inanición (o starvation) es una situación en la que un proceso o hilo nunca obtiene acceso a los recursos que necesita para progresar, debido a la falta de asignación de estos.
+
+b) De los algoritmos vistos, puede causar inanición el algoritmo SJF con los procesos largos; el algoritmo de prioridades con los procesos de baja prioridad, aunque esto puede solucionarse si dichos procesos pueden modificar su prioridad dinamicamente; el algoritmo de colas multinivel, aunque depende de los algoritmos de cada cola y la relación entre ellos.
+
+c) Como se mencionó en el inciso b), es posible evitar la inanición (starvation) en el algoritmo de planificación por prioridades a traves del aging. 
+El concepto de aging (envejecimiento) es una técnica utilizada en sistemas operativos y otros entornos de concurrencia para evitar la inanición o starvation de procesos con baja prioridad. Consiste en incrementar gradualmente la prioridad de un proceso o hilo a medida que permanece en espera. De esta manera, aunque inicialmente su prioridad sea baja, con el tiempo aumentará lo suficiente para que eventualmente se le otorgue acceso a los recursos que necesita, evitando que quede indefinidamente sin ejecutarse.
