@@ -1,0 +1,2 @@
+En base al ejercicio 17, es posible desarrollar un algoritmo que se aproveche del tiempo consumido por cada proceso en la CPU.
+Lo que haria seria tener 3 colas de diferentes prioridades para procesos de diferentes prioridades y administrar internamente cada una con SRTF. Asimismo, administraria las colas a partirde las prioridades, utilizando un envejecimiento de X unidades, y tendría una cola extra de prioridad superior a la cual irian a parar los procesos originarios de la cola de mayor prioridad (entre las usadas normalmente) cuando pasen un tiempo Y sin ejecutarse.

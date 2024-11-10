@@ -1,0 +1,14 @@
+a) En sistemas multiprocesador homogéneos, el método de planificación más sencillo para asignar CPUs a los procesos es el Round Robin. En este esquema, cada proceso recibe una cantidad fija de tiempo de CPU (cuanto o “quantum”) en un orden cíclico. Al término de su turno, el proceso pasa al final de la cola, y se asigna la CPU al siguiente proceso en la cola. Este método es simple de implementar y no requiere decisiones complejas, lo cual lo hace eficiente para sistemas con procesadores idénticos.
+
+b) Ventajas y desventajas del Round Robin:
+
+Ventajas:
+
+-Justicia y simplicidad: Al ser cíclico, asegura que todos los procesos reciben tiempo de CPU de manera equitativa, evitando que un proceso acapare la CPU.
+-Tiempo de respuesta predecible: Cada proceso obtiene atención de la CPU en intervalos regulares, lo cual puede ser útil para sistemas interactivos.
+-Facilidad de implementación: No requiere algoritmos complejos de prioridad ni análisis de características de cada proceso.
+Desventajas:
+
+-Sobrecarga de cambio de contexto: La constante alternancia de procesos (si el quantum es muy pequeño) puede generar una alta cantidad de cambios de contexto, lo cual reduce la eficiencia del sistema.
+-Inadecuado para procesos de larga duración: Procesos que requieren tiempos de ejecución extensos pueden verse fragmentados en múltiples turnos, lo cual no es eficiente en términos de rendimiento.
+-No considera prioridades: Round Robin no toma en cuenta la prioridad de los procesos, por lo que un proceso de baja prioridad puede recibir tanto tiempo de CPU como uno de alta prioridad. Esto puede ser subóptimo en algunos sistemas.
