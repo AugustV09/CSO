@@ -1,0 +1,3 @@
+a) Suponiendo que se tenga un sistema de procesos interactivos y procesos batch y una planificación a traves de colas multinivel, podria establecerse que la cola para los procesos Batch presente un algortimo de planificación de FCFS y que la cola de procesos interactivos presente una planificación por SRTF.
+
+b) Asimismo, tambien en base al inciso anterior, podria implementarse "verticalmente" un algoritmo de planificación por prioridades, para el cual la cola de procesos interactivos sea la de mayor prioridad y luego este la cola de procesos batch. Entonces, los procesos interactivos serian los de mayor prioridad e irían en la cola mas importante y los procesos batch serian los menos relevantes.
