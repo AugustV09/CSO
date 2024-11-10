@@ -1,0 +1,25 @@
+Los algoritmos de planificación de procesos en sistemas operativos gestionan el uso de la CPU entre múltiples procesos. Sin embargo, cuando existen procesos ligados a la CPU y a la entrada/salida (E/S), algunos algoritmos pueden presentar desventajas en su eficiencia y justicia. A continuación, se analizan las desventajas de los algoritmos Round Robin y SRTF en este contexto:
+
+a) Round Robin (RR)
+Descripción: Round Robin asigna a cada proceso un tiempo fijo de CPU (cuánto mayor es el quantum, más tiempo recibe el proceso antes de que se le quite la CPU). Si el proceso no termina durante su quantum, se interrumpe y se coloca al final de la cola.
+
+Desventajas:
+
+-Desperdicio de CPU en procesos de E/S: Los procesos de entrada/salida suelen pasar gran parte de su tiempo esperando que las operaciones de E/S se completen. Cuando a estos procesos se les asigna un quantum de CPU, pueden liberarla antes de usar todo el tiempo asignado, dejando la CPU ociosa en parte del tiempo asignado. Esto se traduce en un desperdicio de CPU y en un tiempo de espera mayor para otros procesos.
+
+-Alto overhead de cambio de contexto: Al interrumpir constantemente procesos ligados a la CPU para mantener el quantum fijo, se aumenta el número de cambios de contexto. Esto es menos eficiente para procesos que necesitan tiempos largos de CPU (ligados a CPU) y puede hacer que el sistema tenga un overhead elevado, especialmente si hay muchos procesos de CPU intensivos.
+
+-Tiempo de espera alto para procesos de CPU: Los procesos de CPU suelen requerir largos intervalos de tiempo para completar sus tareas. Con el quantum de RR, estos procesos pueden experimentar un tiempo de espera prolongado debido a las múltiples interrupciones, lo que reduce la eficiencia del sistema y aumenta el tiempo de respuesta de estos procesos.
+
+b) SRTF (Shortest Remaining Time First)
+Descripción: SRTF es una variante del algoritmo SJF (Shortest Job First), pero preemptivo. Selecciona el proceso con el menor tiempo de ejecución restante, interrumpiendo procesos actuales si otro con menor tiempo restante llega a la cola.
+
+Desventajas:
+
+-Problema de hambre (starvation): En presencia de procesos de E/S que tienen ráfagas de CPU cortas, los procesos de CPU pueden sufrir hambre, ya que siempre serán interrumpidos en favor de los procesos con menor tiempo restante. Esto resulta en tiempos de espera indefinidos para procesos de CPU intensivos, afectando su tiempo de respuesta.
+
+-Sobrecarga en sistemas con muchos procesos de E/S: Cuando hay muchos procesos de E/S en el sistema, SRTF favorece constantemente a los procesos cortos. Esto puede causar que el sistema invierta mucho tiempo en cambios de contexto y en planificar procesos de E/S en lugar de completar procesos de CPU largos, lo que genera una sobrecarga y reduce la eficiencia del sistema.
+
+-Complejidad en el cálculo del tiempo restante: La implementación de SRTF requiere que el sistema conozca el tiempo restante de cada proceso, lo cual no siempre es predecible, especialmente con procesos de E/S donde el tiempo de espera puede variar considerablemente. Esto añade una carga adicional para el sistema de planificación y dificulta la asignación eficiente de la CPU.
+
+En resumen, tanto Round Robin como SRTF tienen desventajas significativas en sistemas mixtos con procesos ligados a CPU y a E/S. RR puede generar un overhead excesivo con cambios de contexto constantes, mientras que SRTF favorece procesos de E/S cortos, dejando a los procesos de CPU largos en espera por más tiempo del necesario.
