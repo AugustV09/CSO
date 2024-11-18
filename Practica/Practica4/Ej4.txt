@@ -4,5 +4,5 @@ b) Un claro ejemplo seria que si se tiene un quantum Q=8 y dos procesos:
 Con un timer fijo, si comienza a ejecutarse el proceso 1 y a los 4 instantes de reloj debe hacer E/S, el proceso 2 solo tendra 4 tics de reloj para ejecutarse antes que sea interrumpido.
 Sin embargo, con un timer variable, el proceso 2 tendra 8 instantes de reloj para ejecutarse (el quantum entero) hasta que sea interrumpido.
 
-c) Con un timer fijo, la información del quantum deberia residir en un registro de la CPU y ser inicializa por el kernel cuando llegue a cero, puesto que timer es compartido por todos los procesos.(Esta bien????????????).
-Con un timer variable, la información dle quantim deberia residir en la PCB de cada proceso o tambien podria estar solo como un registro en la CPU. (Esta bien?????????????????)
+c) (Este inciso no se trata en realidad de donde se almacena el TIMER sino del caracter del mismo, es decir, si es global o local)
+Con un timer fijo, el mismo es global al sistema, es decir, global a todos los procesos. Sin embargo, un timer variable implica que el mismo sea local a cada proceso.

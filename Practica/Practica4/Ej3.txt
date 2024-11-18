@@ -4,21 +4,21 @@ SJF (Shortest Job First): Es No-Apropiativo y se basa en elegir para que se ejec
 
 RR (Round Robin): Es apropiativo y se basa en seleccionar el proceso en la cola segun FIFO (es decir, segun FCFS) pero asignandole un Quantum mediante un reloj que determina cuando debe interrumpirse al proceso en CPU para darle paso a otro proceso. El proceso saliente es colocado al final de la Ready Queue.
 
-Prioridades: Puede ser apropiativo o no. (COMO???????????????????).Se asigna una prioridad a todos los procesos (menor valor, mayor prioridad) y se crea un Ready-Queue para nivel de prioridad. Entonces, se selecciona una proceso para su ejecución de los que tienen mayor prioridad (menor valor). (Esa elección se hace con FIFO????????????).
+Prioridades: Puede ser apropiativo o no. Se asigna una prioridad a todos los procesos (menor valor, mayor prioridad) y se crea un Ready-Queue para nivel de prioridad. Entonces, se selecciona una proceso para su ejecución de los que tienen mayor prioridad (menor valor) segun cual llegó primero a la cola (FIFO).
 
-b) De los algoritmos mencionados, necesitan un parametro, el RR, debido al Quantum; el de prioridades, debido al valor que indique la prioridad; el SJF, debido a que es necesario conocer el tiempo que tarde cada proceso en la CPU. (Prioridades y SJF cuentan como que tienen PARAMETROS???????????????????).
+b) De los algoritmos mencionados, necesitan un parametro, el RR, debido al Quantum; el de prioridades, debido al valor que indique la prioridad; el SJF, debido a que es necesario conocer el tiempo que tarde la siguiente rafaga de CPU de los procesos en READY. (Prioridades y SJF cuentan como que tienen PARAMETROS???????????????????).
 
-c) (¿¿¿¿¿¿¿¿A QUE SE REFIERE CON MAS ADECUADO SEGUN SISTEMA OPERATIVO??????????????)
+c) A priori, FCFS beneficia a los procesos CPU-bound porque pueden ejecutarse en CPU cuanto ellos quieran y ellos se caracterizan por estar ligados a la CPU.
 
-A priori, FCFS no beneficia a ningun tipo de proceso.
+SJF beneficia a los procesos mas cortos y, de hecho, es mejor para los procesos I/O-bound porque tienen rafagas de CPU cortas.
 
-SJF beneficia a los procesos mas cortos.
+RR no beneficia en gran medida a un tipo de proceso pero favorece mas a los procesos CPU-bound porque los I/O-bound puede ser que no utilicen todo su quantum.
 
-RR no beneficia a ningun tipo de proceso.
+El algoritmo de planificación por prioridades beneficia a los procesos con mayor prioridad y, por ende, es mejor para los procesos interactivos ya que comunmente tienen mayor prioridad.
 
-El algoritmo de planificación por prioridades beneficia a los procesos con mayor prioridad.
+En base al sistema operativo, para que ellos que se basen en I/O es mejor un algoritmo SJF o por prioridades. SIn embargo, los sistemas operativos utilizados en contextos donde se administraran mas procesos CPU-bound, seria mejor utilizar FCFS o RR.
 
 d) El algoritmo FCFS tiene como desventaja que comunmente una planificación tan basica no es rentable pero tiene como ventaja que se puede tener claro que los procesos CPU Bound terminan al comenzar su primer rafaga mientras que los I/O Bound no y que no genera inanición.
 El algoritmo SJF implica una clara desventaja para los procesos largos, porque pueden sufrir inanición, pero son muy convenientes para procesos cortos.
 El algoritmo RR tiene como ventaja que evita que un proceso se adueñe de la CPU, pero es una clara desventaja la configuración del reloj (poco quantum implica muchos cambios de contexto y mucho quantum implica posible inanición por parte de otros procesos).
-El algoritmo por prioridades tiene como clara desventaja que procesos de baja prioridad pueden sufrir inanición (esto se puede solucionar si se permite que cambien de prioridad dinamicamente), pero una buena ventaja es el nivel de organización que provee y que favorece la ejecución de procesos de alta prioridad. (Esto ultimo ESTA BIEN???????????????).
+El algoritmo por prioridades tiene como clara desventaja que procesos de baja prioridad pueden sufrir inanición (esto se puede solucionar si se permite que cambien de prioridad dinamicamente), pero una buena ventaja es el nivel de organización que provee y que favorece la ejecución de procesos de alta prioridad, que en general son procesos de entrada y salida. (Esto ultimo ESTA BIEN???????????????).
