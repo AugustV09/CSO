@@ -1,0 +1,11 @@
+La anomalía de Belady es un fenómeno en la gestión de memoria en sistemas operativos, específicamente relacionado con el algoritmo de reemplazo de páginas FIFO (First-In, First-Out). Esta anomalía ocurre cuando aumentar el número de marcos de página (espacios en la memoria física para almacenar páginas) resulta en un mayor número de fallos de página, algo que contradice la intuición, ya que se esperaría que más memoria siempre mejore el rendimiento.
+
+¿Por qué ocurre?
+En el algoritmo FIFO, las páginas se reemplazan en el orden en que llegaron: la que llegó primero es la primera en salir, sin considerar su uso reciente o futuro. En ciertos patrones de acceso a las páginas, el aumento de marcos puede provocar que las páginas necesarias sean reemplazadas más frecuentemente, aumentando los fallos de página.
+
+Ejemplo
+Supongamos un acceso a páginas en este orden:
+1, 2, 3, 4, 1, 2, 5, 1, 2, 3, 4, 5
+
+Con 3 marcos, el número de fallos de página puede ser menor que con 4 marcos dependiendo del orden de reemplazo.
+Esto demuestra que el comportamiento del algoritmo FIFO no siempre mejora con más recursos, lo que hace que la anomalía de Belady sea un problema conocido en sistemas que usan este algoritmo.
